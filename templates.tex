@@ -1,0 +1,55 @@
+
+\begin{figure}[h] % picture
+	\centering
+	\includegraphics[width = 0.5\textwidth]{pics/alpha_struct.png}
+	\caption{caption}
+	\label{fig:plasmid}	
+\end{figure}
+
+
+
+\begin{figure*}[h] % two pictures
+	\centering
+	\begin{subfigure}[t]{0.39\linewidth}
+		\includegraphics[width = \textwidth]{pics/alpha_struct.png}
+		\caption{caption 1}\label{fig:alpha}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.6\linewidth}
+		\includegraphics[width = \textwidth]{pics/beta_struct.png}
+		\caption{caption 2}\label{fig:beta}
+
+	\end{subfigure}
+	\caption{great caption}
+	\label{fig:structs}
+	
+\end{figure*}
+
+
+
+\begin{table}[p]
+	\small
+	\caption{caption}
+	\label{table:strains}
+	\begin{tabular}{ p{0.25\width - \tabcolsep} p{0.65\width - 2\tabcolsep}  p{0.1\width - \tabcolsep}}
+		\graytable
+		\toprule
+		Название штамма & Описание & Источник \\ 
+		\midrule
+		W303 & MAT\textbf{a} ade2-101 his3-11 trp1-1 ura3-52 can1-100 leu2-3,112, GAL, psi+ & $^1$ \\  \invisiblerule
+		\midrule
+
+		
+		блабла & блабал & jdsjf \\
+		\bottomrule
+	\end{tabular}
+	
+	
+	\begin{tabular}{p{1\width}}
+			$^1$ коллекция лаборатории \\
+			$^2$ штаммы были получены из приведенных введением плазмид
+			\\
+	\end{tabular}
+	
+\end{table}
+
+
