@@ -1,0 +1,140 @@
+\section{Метод наименьших квадратов(1)}
+Нам удоюно изменить обозначения. Будем считать, что нас интересует зависимость величины $f(t_i)$ от параметра  $t$ ( $t$ -- время, температура и т.д.). Подчеркнём, что функция $f(t_i)$ неизвестна.
+
+ЭД -- это таблица $t_i | b_i, i = 1 \dots m$, где $b_i$ -- результат измерения и 
+\begin{equation}
+	b_i = f(t_i) + \varepsilon_i, i = 1 \dots m
+\end{equation}
+
+Задача состоит в том, чтобы по ЭД  $t_i | b_i$ найти функцию $\overline f(t_i)$ такую, что 
+\begin{equation}
+	|f(t_i) - b_i| \leq \varepsilon,  i = 1 \dots n
+\end{equation}
+При этом предполагается, что ошибки $\varepsilon_i$ удовлетворяют условиям
+\begin{equation}
+	|\varepsilon_i | \leq \varepsilon , \quad \varepsilon \ll  |b_i| .
+\end{equation}
+Если такая функция $\overline f(t_i)$ найдена, то считается, что
+\begin{equation}
+	|\overline f(t_i)| - f(t_i) | \leq \varepsilon
+\end{equation}
+и это всё, на что мы можем рассчитывать.
+
+\vspace{1cm}
+\textbf{Метод наименьших квадратов} (МНК) --  это некоторая стратегия, позволяющая построоить функцию $\overline f(t_i)$.
+
+В соответствии с МНК выбирается некоторая система функций $\varphi_k (t) $ и целое число $n$. Функуция $\overline f(t_i)$ ищется в виде 
+\begin{equation}
+	\overline{f} (t) = \sum_{k=1}^\inf {x_k \varphi_k (t) }
+\end{equation}
+При этом всегда предполагает, что $n$ много меньше $m$:
+\begin{equation}
+	n \ll m
+\end{equation}
+
+Неизвестные величины $x_1 \dots x_n$ находятся из условия минимальност величины $Q(x_1, x_2 \dots x_n)$, то есть из условия
+\begin{equation} \label{eq:5.7}
+	Q(x_1, x_2 \dots x_n) = min
+\end{equation}
+и по определению
+\begin{equation} 
+	Q(x_1, x_2 \dots x_n) = \sum_{i=1}^m {(f(t_i) - b_i)^2}
+\end{equation}
+
+Обоснование этой стратегии должно рассматриваться в курсе математической статистики.
+
+Величина $Q(x_1, x_2 \dots x_n)$ имеет вид
+\begin{equation}
+	Q(x_1, x_2 \dots x_n) = Q_0 + \sum_{k=1}^m{Q_k x_k } + \sum_{k, l=1}^n {Q_kl x_k x_l}
+\end{equation}
+и величины $Q_0, Q_k, Q_kl$ зависят от $b_1 \dots b_n$.
+
+
+В соответствии с уравнением \ref{eq:5.7} величины  $x_1 \dots x_n$ определяются из уравнений
+\begin{equation} \label{eq:5.10}
+	 \frac{\partial Q}{\partial x_k } = 0, k = 1 \dots n
+\end{equation}
+
+Это система из $n$ линейных уравнений с $n$ неизвестными. И , если $x_1^0 \dots x_n^0$ -- решение, то надо убедиться еще, что $Q(x_1^0 \dots x_n^0) = min$.
+
+Возникают следующие вопросы: 
+\begin{enumerate}[nolistsep]
+	\item Как выбрать функции $\varphi_k (t) $  и величину $n$?
+	\item каков явный вид уравнений \ref{eq:5.10}?
+	\item Как найти решение $x_1^0 \dots x_n^0$ этих уравнений?
+	\item Является ли найденное решение \textbf{устойчивым}, то есть как измениться решение $x_1^0 \dots x_n^0$, если $b_i$ заменить на  $b_i = \varepsilon_i $?
+\end{enumerate}
+
+Эти вопросы будут рассмотрены в этой и следующей лекциях.
+
+
+\begin{equation}
+	A =
+	\begin{pmatrix}
+	a_{11} & \dots & a_{1n}\\
+	a_{21} & \dots & a_{2n}\\
+	\vdots & \vdots & \vdots \\
+	a_{m1} & \dots & a_{mn}
+	\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	\overline{f} (t_i) = \sum_{k=1}^n {a_k x_k}
+\end{equation}
+
+\begin{equation}
+	A (BC) = (AB) C
+\end{equation}
+
+\begin{equation}
+	TA \equiv A^T, T: M_{m\times n} \rightarrow M_{n\times m}
+\end{equation}
+
+\begin{equation}
+	(AB) ^ T = B^T A^T
+\end{equation}
+
+\begin{equation}
+	x = \begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n
+	\end{pmatrix}
+	\in M_{n\times 1}
+\end{equation}
+
+\begin{equation}
+	(x, y) = \sum_{i=1}^n x_k y_k
+\end{equation}
+
+\begin{equation}
+	\|x \| = (x, x)^frac{1}{2} = (\sum_{i=1}^n x_i^2)^frac{1}{2}
+\end{equation}
+\begin{equation}
+	(x, y) = x^T y = y^T x, x,y \in M_(n \times 1 )
+\end{equation}
+
+\begin{equation}
+	(y, Ax) = (x, A^T y), \forall A \in M_{n\times m}
+\end{equation}
+	
+
+\begin{equation}
+	Bx = a, B = A^T A \in M_{n\times n}, a=A^T b \in M_{n\times 1}
+\end{equation}
+
+\begin{equation}
+	r(x) = Ax - b
+\end{equation}
+
+\begin{equation}
+	Q(x_1 \dots x_n) \equiv Q(x) = \|r(x)\| ^2 = (r(x), r(x))
+\end{equation}
+
+\begin{equation}
+	\phi (x, \varepsilon ) = Q (x + \varepsilon ) - Q(x)
+\end{equation}
+
+\begin{equation}
+	\phi (x, \varepsilon ) = 2(\varepsilon, A^T A x) + (A\varepsilon, A\varepsilon)
+\end{equation}
