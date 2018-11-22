@@ -1,4 +1,4 @@
-\section{Метод наименьших квадратов(1)}
+\section{Лекция 5 Метод наименьших квадратов(1)}
 Нам удобно изменить обозначения. Будем считать, что нас интересует зависимость величины $f(t_i)$ от параметра  $t$ ( $t$ -- время, температура и т.д.). Подчеркнём, что функция $f(t_i)$ неизвестна.
 
 ЭД -- это таблица $t_i | b_i, i = 1 \dots m$, где $b_i$ -- результат измерения и 
@@ -55,7 +55,7 @@
 	 \frac{\partial Q}{\partial x_k } = 0, k = 1 \dots n
 \end{equation}
 
-Это система из $n$ линейных уравнений с $n$ неизвестными. И , если $x_1^0 \dots x_n^0$ -- решение, то надо убедиться еще, что $Q(x_1^0 \dots x_n^0) = min$.
+Это система из $n$ линейных уравнений с $n$ неизвестными. И , если $x_1^0 \dots x_n^0$ -- решение, то надо убедиться ещё, что $Q(x_1^0 \dots x_n^0) = min$.
 
 Возникают следующие вопросы: 
 \begin{enumerate}[nolistsep]
@@ -67,8 +67,15 @@
 
 Эти вопросы будут рассмотрены в этой и следующей лекциях.
 
-
+Рассмотрим первый из этих вопросов.
+Из предыдущих лекций следует, что всегда можно выбрать 
 \begin{equation}
+	\varphi_k(t) = t^{k-1}
+\end{equation}
+Но возможны и другие выборы. Например, $\varphi_k(t)$ -- система В-сплайнов, $\varphi_k(t) = e^\lambda_k t$ и~т.д.
+
+Рассмотрим второй вопрос. Для ответа на него удобно ввести матричные обозначения. Обозначим через $M_{m \times n}$ множество матриц, имеющих $m$ строк и $n$ столбцов. Матрица $A \in M_{m \times n}$ -- это просто таблица
+\begin{equation}\label{eq:5.12}
 	A =
 	\begin{pmatrix}
 	a_{11} & \dots & a_{1n}\\
@@ -77,23 +84,32 @@
 	a_{m1} & \dots & a_{mn}
 	\end{pmatrix}
 \end{equation}
+$M_{m \times n}$ -- это линейное пространство размерности $mn$. То есть, если $A,B \in M_{m \times n}$, то определена матрица $С = \alpha A + \beta B$. Умножение на $\alpha \in \mathbb{R}$ и сложение проводится покомпонентно.
 
-\begin{equation}
-	\overline{f} (t_i) = \sum_{k=1}^n {a_k x_k}
+В МНК матрицы возникают естественно, так как
+ \begin{equation}
+	\overline{f} (t_i) = \sum_{k=1}^n {a_k x_k}, a_{ik} = \varphi_k(t_i) 
 \end{equation}
+Матрица $A = (a_{ik}) \in M_{m \times n}$ называется \textbf{матрицей плана}.
 
+Если матрица $A$ имеет $n$ столбцов, а матрица $B$ -- $n$ строк, то определено их произведение
 \begin{equation}
+	C = AB, c_{ij} = \sum_{k=1}^n{a_{ik}b_{kj}}
+\end{equation}
+Таким образом, если $A \in M_{m \times n}, B \in M_{n \times l}$, то $C = AB \in M_{m \times l}$. Это умножение ассоциативно, то есть
+\begin{equation}\label{eq:5.15}
 	A (BC) = (AB) C
 \end{equation}
-
+Кроме умножения определена операция транспонирования Т (сопряжения)
 \begin{equation}
-	TA \equiv A^T, T: M_{m\times n} \rightarrow M_{n\times m}
+	TA \equiv A^T, T: M_{m\times n} \rightarrow M_{n\times m}, (A^T)_{ij} = a_{ji},
 \end{equation}
-
-\begin{equation}
+и легко видеть, что
+\begin{equation}\label{eq:5.17}
 	(AB) ^ T = B^T A^T
 \end{equation}
 
+Вектор $x \in \mathbb{R}^n$ также удобно рассматривать как матрицы из $M_{n \times 1}, (\mathbb{R}^n = M_{n \times 1})$
 \begin{equation}
 	x = \begin{pmatrix}
 		x_1\\
@@ -103,38 +119,49 @@
 	\in M_{n\times 1}
 \end{equation}
 
+Для векторов $x, y \in \mathbb{R}^n$ определено скалярное произведение
 \begin{equation}
-	(x, y) = \sum_{i=1}^n x_k y_k
+	(x, y) = \sum_{i=1}^n x_k y_k, 
 \end{equation}
-
-\begin{equation}
+и обычная (эвклидова) норма $\|x\|$ вектора $x$  -- это
+\begin{equation} 
 	\|x \| = (x, x)^frac{1}{2} = (\sum_{i=1}^n x_i^2)^frac{1}{2}
 \end{equation}
+В матричных обозначениях
 \begin{equation}
 	(x, y) = x^T y = y^T x, x,y \in M_(n \times 1 )
 \end{equation}
-
-\begin{equation}
+Используя это замечание и равенства \ref{eq:5.15},\ref{eq:5.17}, получим, что
+\begin{equation}\label{eq:5.22}
 	(y, Ax) = (x, A^T y), \forall A \in M_{n\times m}
 \end{equation}
 	
 
-\begin{equation}
+Рассмотрим, как найти явный вид уравнений \ref{eq:5.10}. Прежде всего заметим, что в матричных обозначениях соотношения $\overline f(t_i) = b_i$ (если \ref{eq:5.12}) имеют вид $Ax=b$. При $m\gg n$ эта система уравнений решения не имеет, так как это $m$ уравнений с $n \ll m$ неизвестными. Как проще всего из системы $Ax=b$ получить систему из $n$ уравнений? Надо просто обе части равенства $Ax=b$ умножить на $A^T$. Тогда получим
+\begin{equation}\label{eq:5.23}
 	Bx = a, B = A^T A \in M_{n\times n}, a=A^T b \in M_{n\times 1}
 \end{equation}
 
-\begin{equation}
-	r(x) = Ax - b
-\end{equation}
+Покажем, что система совпадает с системой \ref{eq:5.10}. Можно, конечно, явно вычислить $\frac{\partial Q}{\partial x_n} = 0$,но лучше поступить иначе.
 
+Введем \textbf{вектор невязки}
 \begin{equation}
-	Q(x_1 \dots x_n) \equiv Q(x) = \|r(x)\| ^2 = (r(x), r(x))
+	r(x) = Ax - b.
 \end{equation}
-
+Тогда
 \begin{equation}
-	\phi (x, \varepsilon ) = Q (x + \varepsilon ) - Q(x)
+	Q(x_1 \dots x_n) \equiv Q(x) = \|r(x)\| ^2 = (r(x), r(x)).
 \end{equation}
-
+Рассмотрим величины
 \begin{equation}
+	\phi (x, \varepsilon ) = Q (x + \varepsilon ) - Q(x).
+\end{equation}
+Здесь $\varepsilon \in \mathbb{R}^n$ произвольный вектор, длина которого "мала". Легко видеть, что
+\begin{equation}\label{eq:5.27}
 	\phi (x, \varepsilon ) = 2(\varepsilon, A^T A x) + (A\varepsilon, A\varepsilon)
 \end{equation}
+
+При выводе этого равенства надо использовать \ref{eq:5.22}.
+
+Из \ref{eq:5.27} следует, что величина $Q(x)$ имеет минимум при $x = x^0 = (x_1^0, \dots x_n^0)$, если $x^0$ -- это решение системы уравнений \ref{eq:5.23}.
+То есть мы нашли явный вид системы уравнений для $x$. Это система \ref{eq:5.23}, и она называется системой \textbf{нормальных уравнений}.
