@@ -22,6 +22,7 @@
 \setpapersize{A4} %формат бумаги
 \setmarginsrb{30mm}{25mm}{25mm}{25mm}{0pt}{0mm}{0pt}{13mm} %размеры полей: левое, верхнее, правое, нижнее, 3*колонтитулы, расстояние между нижним краем нижней строки и нижним краем номера страницы
 \usepackage{indentfirst} %красная строка для первого абзаца главы или параграфа
+\parindent=0cm % отступ красной строки
 \sloppy %борьба с залезанием строк на поля путём изменения размеров пробелов
 \usepackage{amsmath} %дополнительные средства для вёрстки формул
 \everymath{\displaystyle}
@@ -70,7 +71,10 @@
 \usepackage{setspace} %for setstretch
 \usepackage{cite}
 
+\numberwithin{equation}{section} % нумерация формул внутри главы
 
+\usepackage{amsfonts} %для букв с двойными штрихами
+\usepackage{mathrsfs} % еще шрифт
 
 
 \begin{document}
