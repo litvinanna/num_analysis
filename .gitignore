@@ -38,6 +38,7 @@ Thumbs.db
 
 *.aux
 
+*tmp*
 
 lecture1.aux
 lecture1.log
