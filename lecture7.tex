@@ -1,41 +1,41 @@
 \section{Оптимимзация и методы решения систем нелинейных уравнений}
 
 Начнем с примера. Пусть, как и в МНК, зависимость $\overline{f}(t)$ ищется из условия (см. \ref{eq:3.5})
-\begin{equation} \label{eq:representation}
+\begin{equation} \label{eq:7.1}
 	Q(x_1, x_2, x_3, x_4) = \sum^m_{i=1}{(\overline{f}(t_i)-b_i)^2} = \min_{x_1 \dots x_4}
 \end{equation}
 
 Но теперь в отличие от (\ref{eq:5.5}) функция $\overline{f}(t)$ зависит от $x_3$, $x_4$ нелинейно
-\begin{equation} \label{eq:representation}
+\begin{equation} \label{eq:7.2}
 	\overline{f}(t) = x_1e^{x_3 t} + x_2e^{x_4 t}
 \end{equation}
 Тогда условие (\ref{eq:7.1}) приводит к нелинейной системе уравнений
-\begin{equation} \label{eq:representation}
+\begin{equation} \label{eq:7.3}
 	f_i(x) = 0 \quad
 	f_i(x) \equiv f_i(x_1, x_2, x_3, x_4) = \frac{\partial Q}{\partial x_i}(x)
 \end{equation}
 
 \textbf{Задача оптимизации} состоит в поиске минимума величины 
-\begin{equation} \label{eq:representation}
+\begin{equation} \label{eq:7.4}
 	Q(x) \equiv Q(x_1 \dots x_4), \qquad
 	Q(x) > 0
 \end{equation}
 которая называется \textbf{ценой}. Как правило на $x$ накладываются условия вида $x \in U$, где область $U$ определяется условиями
-\begin{equation} \label{eq:representation}
-	a_i < x_i < b_i \quad \textrm{или} \quad ||x|| < R
+\begin{equation} \label{eq:7.5}
+	a_i < x_i < b_i \quad \textrm{или} \quad \|x\| < R
 \end{equation}
 
 Это вносит дополнительные трудности, так как минимум $Q(x)$ может достигаться на границе $\partial U$  области $U \subset \mathbb{R}^n$. Этот случай надо исследовать отдельно, и мы его рассматривать не будем. Таким образом, предполагается, что минимум $Q(x)$ достигается во внутренней точке области $U$ и тогда задача оптимизации сводится к решению системы нелинейных уравнений
-\begin{equation} \label{eq:representation}
+\begin{equation} \label{eq:7.6}
 	f_i(x) = \frac{\partial Q}{\partial x_i}(x) = 0 \quad x = (x_1 \dots x_4), i = 1 \dots n
 \end{equation}
 
 И обратно, задача решения системы уравнений
-\begin{equation} \label{eq:representation}
+\begin{equation} \label{eq:7.7}
 	f_i(x) = 0, i = 1 \dots n
 \end{equation}
 сводится к задаче оптимизации. Для этого достаточно положить
-\begin{equation} \label{eq:representation}
+\begin{equation} \label{eq:7.8}
 	Q(x) = \sum^n_{i=1}{f_i(x)^2}
 \end{equation}
 
@@ -43,13 +43,47 @@
 
 \textbf{Общая схема итерационных} методов решения системы (\ref{eq:7.7}) (методов последовательных приближений) состоит в следующем.
 
-Выбираются некоторое нулевое приближение $x^{(0)} = (x_1^{(0)} \dots x_4^{(0)})$ и задается алгоритм $A$ построения следующих приближений $x^{(n)}$: $x^{(n)} = A(x^{(n-1)})$, $n \geq 1$. В области $U \subset \mathbb{R}^n$ считается заданной норма $||x|| (x \in U)$ и пара $(x^{(0)}, A)$ должны быть выбраны так, что последовательность $x^{(n)}$ сходится к решению $x = x_0 = (x_{01} \dots x_{0n})$ системы (\ref{eq:7.7}), которую мы будем записывать в виде
-\begin{equation} \label{eq:representation}
+Выбираются некоторое нулевое приближение $x^{(0)} = (x_1^{(0)} \dots x_4^{(0)})$ и задается алгоритм $A$ построения следующих приближений $x^{(n)}$: $x^{(n)} = A(x^{(n-1)})$, $n \geq 1$. В области $U \subset \mathbb{R}^n$ считается заданной норма $\|x\| (x \in U)$ и пара $(x^{(0)}, A)$ должны быть выбраны так, что последовательность $x^{(n)}$ сходится к решению $x = x_0 = (x_{01} \dots x_{0n})$ системы (\ref{eq:7.7}), которую мы будем записывать в виде
+\begin{equation} \label{eq:7.9}
 	f(x) = 0 \quad [f(x) \in \mathbb{R}^n \quad f(x) = (f_1(x) \dots f_n(x))]
 \end{equation}
 
 Таким образом должно выполняться условие сходимости
-\begin{equation} \label{eq:representation}
-	||x^{(n)} - x_0|| \to 0
+\begin{equation} \label{eq:7.10}
+	\|x^{(n)} - x_0\| \xrightarrow[n \to \infty]{} 0
+\end{equation}
+
+Ниже рассматриваются два метода решения системы $f(x) = 0$ - \textbf{метод неподвижной точки} и \textbf{метод редукции к одномерному случаю}.
+
+Рассмотрим метод неподвижной точки.
+
+У нас задано отображение
+\begin{equation} \label{eq:7.11}
+	f: U \subset \mathbb{R}^n \to \mathbb{R}^n \quad (f(x) = (f_1(x) \dots f_n(x)))
+\end{equation}
+
+Запишем условие $f(x) = 0$ в виде
+\begin{equation} \label{eq:7.12}
+	g(x) = x \textrm{, где } g(x) = x - f(x)
+\end{equation}
+Так как равенство $g(x_0) = x_0$ влечет $f(x_0) = 0$, то решение системы (\ref{eq:7.9}) - это неподвижная точка отображения $g: U \to \mathbb{R}^n$.
+
+Отображение $g: U \to \mathbb{R}^n$ называется \textbf{сжимающим} в шаре $D_a(R)$ с цетром $a$ и радиусом $R$ ($\|x - a\| < R, x \in D_a(R)$).
+
+$D_a(R) \subset U$, если для любых двух точек $x, y \in D_a(R)$ выполняется условие сжатия
+\begin{equation} \label{eq:7.13}
+	\|g(x) - g(y)\| < q\|x - y\|, q < 1
+\end{equation}
+Если это условие выполняется, то алгоритм построения последовательных приближений $x^{(n)}$ состоит в следующем. Выбирается любая точка $x^{(0)} \in D_a(R)$ (например $x^{(0)} = a$) и $x^{{n}}$ строится по формуле
+\begin{equation} \label{eq:7.14}
+	x^{(n)} = g(x^{(n-1)}), n \geq 1
+\end{equation}
+Так как
+\begin{equation} \label{eq:7.15}
+	\|x^{(n+1)} - x^{(n)}\| = \|g(x^{(n)}) - g(x^{(n-1)})\| \leq q\|x^{(n)} - x^{(n-1)}\|
+\end{equation}
+То последовательность $x^{(n)}$ сходится к решению $x_0 (f(x_0) = 0)$ и 
+\begin{equation} \label{eq:7.16}
+	\|x^{(n)} - x_0\| \leq \frac{q^nR}{(1-q)}
 \end{equation}
 
