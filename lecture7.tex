@@ -1,2 +1,55 @@
 \section{Оптимимзация и методы решения систем нелинейных уравнений}
-Начнем с примера. Пусть, как и в МНК, зависимость $\overline{f}(t)$
+
+Начнем с примера. Пусть, как и в МНК, зависимость $\overline{f}(t)$ ищется из условия (см. \ref{eq:3.5})
+\begin{equation} \label{eq:representation}
+	Q(x_1, x_2, x_3, x_4) = \sum^m_{i=1}{(\overline{f}(t_i)-b_i)^2} = \min_{x_1 \dots x_4}
+\end{equation}
+
+Но теперь в отличие от (\ref{eq:5.5}) функция $\overline{f}(t)$ зависит от $x_3$, $x_4$ нелинейно
+\begin{equation} \label{eq:representation}
+	\overline{f}(t) = x_1e^{x_3 t} + x_2e^{x_4 t}
+\end{equation}
+Тогда условие (\ref{eq:7.1}) приводит к нелинейной системе уравнений
+\begin{equation} \label{eq:representation}
+	f_i(x) = 0 \quad
+	f_i(x) \equiv f_i(x_1, x_2, x_3, x_4) = \frac{\partial Q}{\partial x_i}(x)
+\end{equation}
+
+\textbf{Задача оптимизации} состоит в поиске минимума величины 
+\begin{equation} \label{eq:representation}
+	Q(x) \equiv Q(x_1 \dots x_4), \qquad
+	Q(x) > 0
+\end{equation}
+которая называется \textbf{ценой}. Как правило на $x$ накладываются условия вида $x \in U$, где область $U$ определяется условиями
+\begin{equation} \label{eq:representation}
+	a_i < x_i < b_i \quad \textrm{или} \quad ||x|| < R
+\end{equation}
+
+Это вносит дополнительные трудности, так как минимум $Q(x)$ может достигаться на границе $\partial U$  области $U \subset \mathbb{R}^n$. Этот случай надо исследовать отдельно, и мы его рассматривать не будем. Таким образом, предполагается, что минимум $Q(x)$ достигается во внутренней точке области $U$ и тогда задача оптимизации сводится к решению системы нелинейных уравнений
+\begin{equation} \label{eq:representation}
+	f_i(x) = \frac{\partial Q}{\partial x_i}(x) = 0 \quad x = (x_1 \dots x_4), i = 1 \dots n
+\end{equation}
+
+И обратно, задача решения системы уравнений
+\begin{equation} \label{eq:representation}
+	f_i(x) = 0, i = 1 \dots n
+\end{equation}
+сводится к задаче оптимизации. Для этого достаточно положить
+\begin{equation} \label{eq:representation}
+	Q(x) = \sum^n_{i=1}{f_i(x)^2}
+\end{equation}
+
+В этой лекции рассматривается задача решения системы уравнений (\ref{eq:7.7}). Это трудная задача. Все методы ее решения итерационные и имеют ограниченную область применения. 
+
+\textbf{Общая схема итерационных} методов решения системы (\ref{eq:7.7}) (методов последовательных приближений) состоит в следующем.
+
+Выбираются некоторое нулевое приближение $x^{(0)} = (x_1^{(0)} \dots x_4^{(0)})$ и задается алгоритм $A$ построения следующих приближений $x^{(n)}$: $x^{(n)} = A(x^{(n-1)})$, $n \geq 1$. В области $U \subset \mathbb{R}^n$ считается заданной норма $||x|| (x \in U)$ и пара $(x^{(0)}, A)$ должны быть выбраны так, что последовательность $x^{(n)}$ сходится к решению $x = x_0 = (x_{01} \dots x_{0n})$ системы (\ref{eq:7.7}), которую мы будем записывать в виде
+\begin{equation} \label{eq:representation}
+	f(x) = 0 \quad [f(x) \in \mathbb{R}^n \quad f(x) = (f_1(x) \dots f_n(x))]
+\end{equation}
+
+Таким образом должно выполняться условие сходимости
+\begin{equation} \label{eq:representation}
+	||x^{(n)} - x_0|| \to 0
+\end{equation}
+
