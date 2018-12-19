@@ -98,13 +98,77 @@ C_{2}=\dfrac{13}{48},C_{3}=\dfrac{41}{564},C_{4}=\dfrac{5}{364}
 \end{equation}
 и никаких трудностей типа быстрого роста $\lambda_n(f,X)$ (2.22) c ростом $n$ (2.25) - не возникает.
 
-Английское слово "spline" означает гибкую, упругую ленту. Сплайны, сами того не зная, использовали английские корабелы. На следующем рисунке сплошной линией показана правая часть поперечнго разреза парусника. 
+Английское слово "spline" означает гибкую, упругую ленту. Английские корабелы, сами того не зная, использовали сплайны. На следующем рисунке сплошной линией показана правая часть поперечного разреза парусника. 
 
-===========
-вставить график
-===========
+\begin{figure}[H] % picture
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	width = 10cm,
+	height = 7cm,
+	xmin=0,   xmax=10,
+	ymin=0,   ymax=7,
+	axis y line*=left,
+	axis x line*=bottom,
+	axis lines = left,
+	domain=0:30,
+	xtick={0, 0.5, 2, 8},
+	xticklabels = {$a$,$x_1$,$x_2$, $x_n = b$},
+	ytick={1, 2, 6},
+	yticklabels = {$f_1$, $f_2$, $f_n $},
+	ylabel = {$y$}, ylabel style={rotate=-90},
+	xlabel = {$x$},
+	every axis x label/.style={
+		at={(ticklabel* cs:1.0)},
+		anchor=west,
+	},
+	every axis y label/.style={
+		at={(ticklabel* cs:1.0)},
+		anchor=south,
+	}
+	]
+	
+\coordinate (A) at (0,0);
+\coordinate (B) at (0.5, 1);
+\coordinate (C) at (2, 2);
+\coordinate (D) at (4, 2.5);
+\coordinate (D1) at (6.5, 3.5);
+\coordinate (E) at (7.7, 4.5);
+\coordinate (F) at (8, 6);
 
-Исходными данными служили точки $\ast$. Требовалось провести через эти точки гладкую кривую. Упругая лента укладывалась так, чтобы она проходила через точки $\ast$. Это и рассматривалось как чертеж попереченого сечения будующего корабля. 
+\draw[fill] (A) circle (2pt);
+\draw[fill] (B) circle (2pt);
+\draw[fill] (C) circle (2pt);
+\draw[fill] (D) circle (2pt);
+\draw[fill] (D1) circle (2pt);
+\draw[fill] (E) circle (2pt);
+\draw[fill] (F) circle (2pt);
+
+\draw[thick,black] plot [smooth, tension=0.7] coordinates {(A) (B) (C) (D) (D1) (E) (F)};
+
+\draw [dashed] (B) -- (B -| 0, 0);
+\draw [dashed] (B) -- (B |- 0, 0);
+\draw [dashed] (C) -- (C -| 0, 0);
+\draw [dashed] (C) -- (C |- 0, 0);
+\draw [dashed] (D) -- (D -| 0, 0);
+\draw [dashed] (D) -- (D |- 0, 0);
+\draw [dashed] (E) -- (E -| 0, 0);
+\draw [dashed] (E) -- (E |- 0, 0);
+
+\draw [dashed] (F) -- (F -| 0, 0);
+\draw [dashed] (F) -- (F |- 0, 0);
+
+\end{axis}
+\end{tikzpicture}
+	\caption{Градиентный спуск.}
+	\label{fig:spline}
+\end{figure}
+
+
+
+
+
+Исходными данными служили точки $\ast$. Требовалось провести через эти точки гладкую кривую. Упругая лента укладывалась так, чтобы она проходила через точки $\ast$. Это и рассматривалось как чертеж поперечного сечения будущего корабля. 
 
 Оказывается, что полученная кривая $n=f(x)$ -- это $f(x)=s(x)$, где $s(x)$ интерполяционный сплайн из $S_{3,1}(X,I)$ с дополнительными условиями (14).
 
