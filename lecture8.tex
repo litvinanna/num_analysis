@@ -225,17 +225,111 @@
 Как правило, алгоритм градиентного спуска работает существенно быстрее алгоритма покоординатного спуска. Однако, если карта уровней $Q(x, y) = c_i$ выглядит как показано на рисунке \ref{fig:map_weird}, то оба описанных выше алгоритма сходятся очень медленно.
 
 
-%%%figure_map_weird_not_done
 
-%%%figure_map_weird_not_done
+\begin{figure}[h] % picture
+	\centering
+	\begin{tikzpicture}
+	
+	\begin{axis}[
+	xmin=-5,   xmax=7,
+	ymin=-2,   ymax=7,
+	axis y line*=left,
+    axis x line*=bottom,
+    axis lines = left,
+    domain=0:30,
+    tick label style = {white},
+    grid = major,
+	    ylabel = {$y$}, ylabel style={rotate=-90},
+        xlabel = {$x$},
+        every axis x label/.style={
+    		at={(ticklabel* cs:1.0)},
+   			anchor=west,
+			},
+		every axis y label/.style={
+    		at={(ticklabel* cs:1.0)},
+    		anchor=south,
+			}
+]
+ 
+ \draw [ultra thick,black] (-4, -1 ) to[out=-45,in=-150] (4, 1) to[out=30,in=-100] (6, 5)  to[out=80,in=30] (5, 6) to[out=-150,in=40] (2, 2) to[out=-140,in=10] (-4, 0) to[out=-170,in=135] (-4, -1)	 
+ ;
+ 
+ \draw [ultra thick,black] (-3, -1 ) to[out=-45,in=-150] (1, 0) to[out=30,in=-100] (5.5, 4.5)  to[out=80,in=60] (4.3, 4.5) to[out=-110,in=20] (1, 1) to[out=-160,in=5] (-3, -0.5) to[out=-175,in=135] (-3, -1)	 
+ ;
+		
+\end{axis}
+	\end{tikzpicture}
+	\caption{Овраг}
+	\label{fig:map_wierd}
+\end{figure}
+
+
 
 
 И. М. Гельфанд с сотрудниками предложили \textbf{метод оврагов}, который и в этом случае быстро находит дно оврага - точку $(x_0, y_0)$. Идея состоит в том, что исходной является не одна точка $(x^{(0)}, y^{(0)})$, а две $(x^{(0)}_1, y^{(0)}_1), (x^{(0)}_2, y^{(0)}_2)$. Схема этого метода представлена на рисунке \ref{fig:ravine_method}.
 
 
-%%%figure_ravine_method_not_done
 
-%%%figure_ravine_method_not_done
+
+
+
+\begin{figure}[h] % picture
+	\centering
+	\begin{tikzpicture}
+	
+	\begin{axis}[
+	width = 16cm,
+	height = 6cm,
+	xmin=-7,   xmax=7,
+	ymin=-1,   ymax=6,
+	axis line style={draw=none},
+    domain=0:30,
+    tick style={draw=none},
+    xtick = \empty,
+    ytick = \empty
+]
+\coordinate[label=above:{$(x_1^{(0)}, y_1^{(0)} )$}] (A) at (-6, 3);
+\draw[fill] (A) circle (2pt);
+
+\coordinate[label=above:{$(x_2^{(0)}, y_2^{(0)} )$}] (B) at (-4, 4);
+\draw[fill] (B) circle (2pt);
+
+
+\coordinate (A1) at (-5, 1);
+\coordinate (B1) at (-3, 1);
+\draw[->, ultra thick] (A) -- (A1) node[midway,sloped,above] {$\nabla-$спуск};
+\draw[->, ultra thick](B) -- (B1) node[midway,sloped,above] {$\nabla-$спуск};
+
+\draw[dashed] ($(A1)!-5em!(B1)$) -- ($(A1)!20em!(B1)$);
+
+\coordinate[label=below:{минимум на прямой, $(x^{(1)}, y^{(1)} )$} ] (C) at (-1, 1);
+\draw[fill] (C) circle (2pt);
+\draw[] (C) circle (5pt);
+
+\coordinate (C1) at (1,3);
+\draw[->, ultra thick] (C) -- (C1) node[midway,sloped,below] {$\nabla-$спуск} ;
+
+\draw[dashed] ($(B1)!-5em!(C1)$) -- ($(B1)!20em!(C1)$);
+
+\coordinate (D) at (3, 4);
+
+\node[rotate=20] (F) at (2.6, 4.7) {минимум на прямой};
+
+\draw[fill] (D) circle (2pt);
+\draw[] (D) circle (5pt);
+
+\coordinate (D1) at (5, 3);
+\draw[->, ultra thick] (D) -- (D1) node[midway,sloped,above] {$\nabla-$спуск} ;
+\draw[dashed] ($(C1)!-5em!(D1)$) -- ($(C1)!20em!(D1)$);
+
+		
+\end{axis}
+	\end{tikzpicture}
+	\caption{Метод оврагов.}
+	\label{fig:ravine_method}
+\end{figure}
+
+
 
 
 
@@ -287,15 +381,26 @@
   \draw [ultra thick,black] (-2, -2) to[out=-45,in=-45] (-1, -1) to[out=135,in=135] (-2,-2 );
   
   \node (A) at (-5, 6) {$Q(x) = C_1$};
-  \draw (-3.3, 6) -- (1, 5.6);
+  \coordinate (A1) at (-4, 5.95);
+  \draw[] ($(A)!4em!(A1)$) -- ($(A)!14.4em!(A1)$);
+
   \node (B) at (-5, 5) {$Q(x) = C_2 < C_1$};
-  \draw (-3.3, 5) -- (1, 4.55);
+  \coordinate (B1) at (-4, 4.95);
+  \draw[] ($(B)!4em!(B1)$) -- ($(B)!14.8em!(B1)$);
+  
   \node (C) at (-5, 4) {$Q(x) = C_3 < C_2$};
-  \draw (-3.3, 4) -- (1, 3.0);
+  \coordinate (C1) at (-4, 3.95);
+  \draw[] ($(C)!4em!(C1)$) -- ($(C)!17em!(C1)$);
+   
   \node (D) at (-5, 3) {$Q(x) = C_4 < C_3$};
-  \draw (-3.3, 3) -- (1, 2.2);
+  \coordinate (D1) at (-4, 2.95);
+  \draw[] ($(D)!4em!(D1)$) -- ($(D)!15.5em!(D1)$);
+  
   \node (E) at (-5, 2) {$Q(x) = C_5 < C_4$};
-  \draw (-3.3, 2) -- (1, 1.5);
+  \coordinate (E1) at (-4, 1.95);
+  \draw[] ($(E)!4em!(E1)$) -- ($(E)!14.3em!(E1)$);
+  
+
 \end{axis}
 		
 	\end{tikzpicture}
@@ -307,43 +412,7 @@
 
 
 
-\begin{figure}[h] % picture
-	\centering
-	\begin{tikzpicture}
-	
-	\begin{axis}[
-	width = 15cm,
-	xmin=-5,   xmax=7,
-	ymin=-2,   ymax=7,
-	axis y line*=left,
-    axis x line*=bottom,
-    axis lines = left,
-    domain=0:30,
-    tick label style = {white},
-    grid = major,
-	    ylabel = {$y$}, ylabel style={rotate=-90},
-        xlabel = {$x$}
-        every axis x label/.style={
-    		at={(ticklabel* cs:1.0)},
-   			anchor=west,
-			},
-		every axis y label/.style={
-    		at={(ticklabel* cs:1.0)},
-    		anchor=south,
-			}
-]
- 
- \draw [ultra thick,black] (-4, -1 ) to[out=-45,in=-150] (4, 1) to[out=30,in=-100] (6, 5)  to[out=80,in=30] (5, 6) to[out=-150,in=40] (2, 2) to[out=-140,in=10] (-4, 0) to[out=-170,in=135] (-4, -1)	 
- ;
- 
- \draw [ultra thick,black] (-3, -1 ) to[out=-45,in=-150] (1, 0) to[out=30,in=-100] (5.5, 4.5)  to[out=80,in=60] (4.3, 4.5) to[out=-110,in=20] (1, 1) to[out=-160,in=5] (-3, -0.5) to[out=-175,in=135] (-3, -1)	 
- ;
-		
-\end{axis}
-	\end{tikzpicture}
-	\caption{Овраг}
-	\label{fig:ovrag}
-\end{figure}
+
 
 
 
