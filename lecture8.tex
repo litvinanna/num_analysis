@@ -3,14 +3,14 @@
 	\begin{tikzpicture}
 \begin{axis}[
 	width = 15cm,
-	xmin=-13,   xmax=13,
+	xmin=-13,   xmax=15,
 	ymin=-10,   ymax=10,
 	axis y line*=left,
     axis x line*=bottom,
     axis lines = left,
-	xtick={11.2, 5.2, 1.2},
+	xtick={12, 5.9, 1.6},
 	xticklabels = {$x^{(0)}$, $x^{(1)}$,$x^{(2)}$},
-	ytick={6.25, 2},
+	ytick={6.1, 2.2},
 	yticklabels = {$y^{(0)}$, $y^{(1)}$},
 	        ylabel = {$y$}, ylabel style={rotate=-90},
         xlabel = {$x$},
@@ -27,43 +27,43 @@
 
 	\draw[rotate around={-55:(0,0)},black] (0,0) ellipse (8 and 12);
 	\draw[rotate around={-55:(0,0)},black] (0,0) ellipse (4.7 and 9);
-	\draw[rotate around={-55:(0,0)},black] (0,0) ellipse (3.5 and 5.3);
-	\draw[rotate around={-55:(0,0)},black] (0,0) ellipse (1.7 and 2.7);
+	\draw[rotate around={-55:(0,0)},black] (0,0) ellipse (3.6 and 5.7);
+	\draw[rotate around={-55:(0,0)},black] (0,0) ellipse (1.9 and 2.9);
 	
 	\addplot [only marks,mark=*] coordinates { (0,0) };
 
     
-	\coordinate[label=right:{$(x^{(0)}, y^{(0)})$}] (A) at (11.2, 6.25);
+	\coordinate[label=above:{$(x^{(0)}, y^{(0)})$}] (A) at (12, 6.1);
 	
 	\draw[fill] (A) circle (1pt);
 	\draw [dashed] (A) -- (A |- 0,-10);
 	\draw [dashed] (A) -- (A -| -13,0);
 	
-	\coordinate (B) at (5.2, 6.25);
+	\coordinate[label=above:{$(x^{(1)}, y^{(0)})$}] (B) at (5.9, 6.1);
 	
 	\draw[fill] (B) circle (1pt);
 	\draw [dashed] (B) -- (B |- 0,-10);
 %	\draw [dashed] (B) -- (B -| -13,0);
 	
-	\coordinate (C) at (5.2, 2);
+	\coordinate[label=right:{$(x^{(1)}, y^{(1)})$}] (C) at (5.9, 2.2);
 	
 	\draw[fill] (C) circle (1pt);
 %	\draw [dashed] (C) -- (C |- 0,-10);
 	\draw [dashed] (C) -- (C -| -13,0);
 	
-	\coordinate (D) at (1.2, 2);
+	\coordinate[label=above:{$(x^{(2)}, y^{(1)})$}] (D) at (1.6, 2.2);
 	
 	\draw[fill] (D) circle (1pt);
 	\draw [dashed] (D) -- (D |- 0,-10);
 	
-	\draw [->, thick] (A) -- (B);
-	\draw [->, thick] (B) -- (C);
-	\draw [->, thick] (C) -- (D);
+	\draw [->, ultra thick] (A) -- (B);
+	\draw [->, ultra thick] (B) -- (C);
+	\draw [->, ultra thick] (C) -- (D);
 	
 \end{axis}
 \end{tikzpicture}
-	\caption{caption}
-	\label{fig:plasmid}
+	\caption{Координатный спуск.}
+	\label{fig:coordinate}
 \end{figure}
 
 
@@ -120,8 +120,8 @@
 		
 	\draw[dashed] (B) -- (-3.1, 6); 
 		
-  	\draw[->, thick] (A) -- (B);
-  	\draw[->, thick] (B) -- (C);
+  	\draw[->, ultra thick] (A) -- (B);
+  	\draw[->, ultra thick] (B) -- (C);
   	
   	
   	\draw [dashed] (A) -- (A |- 0,-10);
@@ -137,9 +137,117 @@
 	
 \end{axis}
 \end{tikzpicture}
-	\caption{}
-	\label{fig:plasmid}
+	\caption{Градиентный спуск.}
+	\label{fig:gradient}
 \end{figure}
+
+
+\begin{figure}[h] % picture
+	\centering
+	\begin{tikzpicture}
+	
+	\begin{axis}[
+	width = 15cm,
+	xmin=-7,   xmax=7,
+	ymin=-7,   ymax=7,
+	axis y line*=left,
+    axis x line*=bottom,
+    axis lines = left,
+    domain=0:30,
+    grid = major,
+    tick label style = {white},
+		    ylabel = {$y$}, ylabel style={rotate=-90},
+        xlabel = {$x$},
+        every axis x label/.style={
+    		at={(ticklabel* cs:1.0)},
+   			anchor=west,
+			},
+		every axis y label/.style={
+    		at={(ticklabel* cs:1.0)},
+    		anchor=south,
+			}
+]
+ \draw [ultra thick,black] (5, 5 ) to[out=-45,in=30] (4, -1)
+ 		to[out=-150,in=45] (2,-2) to[out=-135,in=30] (0, -5)
+ 		to[out=-150,in=-45] (-5, -5)  to[out=135,in=-150] (-4, 1) 
+ 		to[out=30,in=-135] (-2, 2)  to[out=45,in=-150] (0, 5)
+ 		to[out=30,in=135] (5, 5) ;
+ \draw [ultra thick,black] (4, 4 ) to[out=-45,in=30] (3, -0.8)
+ 		to[out=-150,in=45] (1.5,-1.5) to[out=-135,in=30] (0, -4)
+ 		to[out=-150,in=-45] (-4, -4)  to[out=135,in=-150] (-3, 0.7) 
+ 		to[out=30,in=-135] (-1.5, 1.5)  to[out=45,in=-150] (0, 4)
+ 		to[out=30,in=135] (4, 4)  ;
+ \draw [ultra thick,black] (3.3, 3.3 ) to[out=-45,in=30] (2.5, 0)
+ 		to[out=-150,in=0] (0, 0)  to[out=90,in=-150] (1, 3)
+ 		to[out=30,in=135] (3.3,3.3)  ;
+  \draw [ultra thick,black] (-3.3, -3.3 ) to[out=135,in=-150] (-2, 0)
+ 		to[out=30,in=180] (0, 0)  to[out=-90,in=30] (-0.5, -2.7)
+ 		to[out=-150,in=-45] (-3.3, -3.3) ;
+ \draw [ultra thick,black] (2.5, 2.5) to[out=-45,in=-45] (0.5, 0.5) to[out=135,in=135] (2.5,2.5 );
+  \draw [ultra thick,black] (2, 2) to[out=-45,in=-45] (1, 1) to[out=135,in=135] (2,2 );
+  \draw [ultra thick,black] (-2.5, -2.5) to[out=-45,in=-45] (-0.5, -0.5) to[out=135,in=135] (-2.5,-2.5 );
+  \draw [ultra thick,black] (-2, -2) to[out=-45,in=-45] (-1, -1) to[out=135,in=135] (-2,-2 );
+  
+  \node (A) at (-5, 6) {$Q(x) = C_1$};
+  \draw (-3.3, 6) -- (1, 5.6);
+  \node (B) at (-5, 5) {$Q(x) = C_2 < C_1$};
+  \draw (-3.3, 5) -- (1, 4.55);
+  \node (C) at (-5, 4) {$Q(x) = C_3 < C_2$};
+  \draw (-3.3, 4) -- (1, 3.0);
+  \node (D) at (-5, 3) {$Q(x) = C_4 < C_3$};
+  \draw (-3.3, 3) -- (1, 2.2);
+  \node (E) at (-5, 2) {$Q(x) = C_5 < C_4$};
+  \draw (-3.3, 2) -- (1, 1.5);
+\end{axis}
+		
+	\end{tikzpicture}
+	\caption{Сложный ландшафт.}
+	\label{fig:complex_landscape}
+\end{figure}
+
+
+
+
+
+\begin{figure}[h] % picture
+	\centering
+	\begin{tikzpicture}
+	
+	\begin{axis}[
+	width = 15cm,
+	xmin=-5,   xmax=7,
+	ymin=-2,   ymax=7,
+	axis y line*=left,
+    axis x line*=bottom,
+    axis lines = left,
+    domain=0:30,
+    tick label style = {white},
+    grid = major,
+	    ylabel = {$y$}, ylabel style={rotate=-90},
+        xlabel = {$x$}
+        every axis x label/.style={
+    		at={(ticklabel* cs:1.0)},
+   			anchor=west,
+			},
+		every axis y label/.style={
+    		at={(ticklabel* cs:1.0)},
+    		anchor=south,
+			}
+]
+ 
+ \draw [ultra thick,black] (-4, -1 ) to[out=-45,in=-150] (4, 1) to[out=30,in=-100] (6, 5)  to[out=80,in=30] (5, 6) to[out=-150,in=40] (2, 2) to[out=-140,in=10] (-4, 0) to[out=-170,in=135] (-4, -1)	 
+ ;
+ 
+ \draw [ultra thick,black] (-3, -1 ) to[out=-45,in=-150] (1, 0) to[out=30,in=-100] (5.5, 4.5)  to[out=80,in=60] (4.3, 4.5) to[out=-110,in=20] (1, 1) to[out=-160,in=5] (-3, -0.5) to[out=-175,in=135] (-3, -1)	 
+ ;
+		
+\end{axis}
+	\end{tikzpicture}
+	\caption{Овраг}
+	\label{fig:ovrag}
+\end{figure}
+
+
 
 
 
