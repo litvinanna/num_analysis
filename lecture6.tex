@@ -18,3 +18,66 @@
 \begin{equation}
 	rank B = n
 \end{equation}
+Следовательно
+\begin{equation}
+	det B \neq 0
+\end{equation}
+и следовательно решение $x$ сущетсвует и единственно.
+
+Все описанные ниже методы решения системы \ref{eq:6.1} основаны на представлении матрицы $B$ в виде
+\begin{equation}
+	B = B_1 B_2 \text{ или } B = B_1 B_2 B_3
+\end{equation}
+где матрицы $B_i$ \textbf{легко обращаются}.
+Так как
+\begin{equation}
+	(B_1B_2)^{-1} = B_2^{-1} B_1^{-1}, (B_1B_2B_3)^{-1} = B_3^{-1}B_2^{-1} B_1^{-1}
+\end{equation}
+то решение системы \ref{eq:6.1} имеет вид
+\begin{equation}
+	x = B^{-1} a = B_2^{-1} B_1^{-1} a \text{ или } x = B_3^{-1}B_2^{-1} B_1^{-1}
+\end{equation}
+
+Легко обращаются следующие типы квадратных матриц $M_{n \times n}$. Это верхние и нижние треугольные матрицы и ортогональные матрицы.
+
+\textbf{Верхнетреугольные матрицы} имеют вид
+\begin{equation}
+	L = \begin{pmatrix}
+		e_{11} & e_{12} & \dots &e_{1(n-1)}&e_{1n} \\
+		0 & e_{22} & \dots &e_{2(n-1)}&e_{2n} \\
+%		0 & 0 & \dots &e_{3(n-1)}&e_{3n} \\
+		\vdots & \vdots & \ddots &\vdots &  \vdots\\
+		0 & 0 & \dots & e_{(n-1)(n-1)} &e_{(n-1)n} \\
+		0 & 0 & \dots & 0 &e_{nn} \\
+	\end{pmatrix}
+\end{equation}
+и соответственно \textbf{нижнетреугольные} матрицы вида 
+
+\begin{equation}
+	L = \begin{pmatrix}
+		e_{11}	&		&		&	&        \\
+				&e_{22}	&   		& \text{\huge0} &\\
+      			&		&e_{33} &	&            \\
+      			&\dots & & \ddots &          \\
+      			& 		&   		&   & e_{nn} 
+	\end{pmatrix}
+\end{equation}
+где заштрихованная область содердит ненулевые элементы. Уравнения $Lx = y$ легко решаются, а решение $x = L^{-1}y$ задает обратную матрицу $L^{-1}$.
+
+
+Матрица $P \in M_{n \times n}$ называется \textbf{ортогональной}, если
+\begin{equation}
+	(Px, Py) = (x, y), \forall x, y \in \mathbb{R}^n = M_{n \times 1}
+\end{equation}
+откуда сразу следует, что
+\begin{equation}
+	P^{-1} = P^T .
+\end{equation}
+
+Произвольные матрицы $B, B'$ называют \textbf{подобными}, если существуют
+
+
+
+
+
+
