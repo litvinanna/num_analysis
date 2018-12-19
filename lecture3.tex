@@ -1,9 +1,9 @@
-\section{Лекция 3. Интерполяционный полином в форме Ньютона. Численное дифференцирование и интегрирование.}
-На прошлой лекции был определен интерполяционный полином в форме Лагранжа (\ref*{2.19}) (\ref*{2.21}). Этот же полином (он единственный) удобнее записывать в форме Ньютона:
-\begin{dmath}
+\section{Интерполяционный полином в форме Ньютона. Численное дифференцирование и интегрирование.}
+На прошлой лекции был определен интерполяционный полином в форме Лагранжа (\ref{eq:2.19}) (\ref{eq:2.21}). Этот же полином (он единственный) удобнее записывать в форме Ньютона:
+\begin{dmath} \label{eq:3.1}
 	\pi(f(x), x) = f(x_1) + f(x_1, x_2)(x-x_1) + f(x_1, x_2, x_3)(x-x_1)(x-x_2) + \dots + f(x_1, x_2, \dots, x_n)(x-x_1)\dots(x-x_{n-1})
 \end{dmath}
-Величины $f(x_1, x_2, \dots, x_k)$ называются разделенными разностями и определяются из рекуррентных соотношений:
+Величины $f(x_1, x_2, \dots, x_k)$ называются \textbf{разделенными разностями} и определяются из рекуррентных соотношений:
 \begin{dmath}
 \begin{cases}
 	f(x_1, x_2) = \frac{f(x_2) - f(x_1)}{x_2 - x_1} \\ 
@@ -12,24 +12,24 @@
 	\dots
 \end{cases}
 \end{dmath}
-Так как формула (\ref{eq:3.1}) не зависит от нумерации точек разбиения, то для её доказательства достаточно перейти к нумерации, в которой $x_1$ заменяется на $x_j$ (???). Эта формула удобна тем, что при добавлении точки $x_{n+1}$ к формуле (\ref{eq:1}) надо просто прибавить $f(x_1, x_2, \dots, x_n, x_{n+1})(x-x_1)\dots(x-x_{n-1})(x-x_n)$. Кроме того, эта формула указывает на связь интерполяционного полинома с разложением в ряд Тейлора.\\
-Чтобы это увидеть, рассмотрим равномерное разбиение (\ref{2.24}), в котором $x_{i+1}-x_i=\delta$. Тогда 
+Так как формула (\ref{eq:3.1}) не зависит от нумерации точек разбиения, то для её доказательства достаточно перейти к нумерации, в которой $x_1$ заменяется на $x_j$ (???). Эта формула удобна тем, что при добавлении точки $x_{n+1}$ к формуле (\ref{eq:3.1}) надо просто прибавить $f(x_1, x_2, \dots, x_n, x_{n+1})(x-x_1)\dots(x-x_{n-1})(x-x_n)$. Кроме того, эта формула указывает на связь интерполяционного полинома с разложением в ряд Тейлора.\\
+Чтобы это увидеть, рассмотрим равномерное разбиение (\ref{eq:2.24}), в котором $x_{i+1}-x_i=\delta$. Тогда 
 \begin{dmath}
 \begin{aligned}
-	f(x_1, x_2) = \frac{f(x_1+\delta) - f(x_1)}{\delta} \simeq f^{(1)}(x_1) \\
-	f(x_1, x_2, x_3) = \frac{1}{2\delta}f^{(1)}(x_2)-f^{(1)}(x_1) \simeq  \frac{1}{2}f^{(2)}(x_1) \\
+	f(x_1, x_2) &= \frac{f(x_1+\delta) - f(x_1)}{\delta} \simeq f^{(1)}(x_1) \\
+	f(x_1, x_2, x_3) &= \frac{1}{2\delta}f^{(1)}(x_2)-f^{(1)}(x_1) \simeq  \frac{1}{2}f^{(2)}(x_1) \\
 	\dots
 \end{aligned}
 \end{dmath}
 Имеется и следующий аналог формулы для остаточного члена в ряду Тейлора:
-\begin{equation}
+\begin{equation} \label{eq:3.4}
 	|f(x) - \pi_k(f|X)(x)| = \frac{f^{n}(\xi)}{n!} \omega_n (x,X)
 \end{equation}
 В этой формуле:
 \begin{equation}
 	\xi \in [y_1, y_2] ;\quad y_1=min_{i}(x-x_i) ;\quad y_2=max_{i}(x-x_i) ;\quad \omega_n(x, X) = (x-x_1)\dots(x-x_n)
 \end{equation}
-Формула \ref{eq:4} даёт ещё один подход к оценке точности интерполяции и показывает, какие трудности возникают при попытке использовать интеполяционный полином вне интервала интерполяции, то есть для \textit{экстраполяции}.
+Формула \ref{eq:3.4} даёт ещё один подход к оценке точности интерполяции и показывает, какие трудности возникают при попытке использовать интеполяционный полином вне интервала интерполяции, то есть для \textit{экстраполяции}.
 
 \bigskip
 Переходим к рассмотрению задач численного дифференцирования и интегрирования. 
@@ -50,8 +50,113 @@
 Рассмотрим задачу численного дифференцирования. Пусть известны величины $f(x_1), \quad f(x_2), \quad x_2 = x_1 + \delta$, и величина $\delta$ "достаточно мала". Задача состоит в построении приблизительной формулы для величины $f^{(1)}(x_1)$
 
 Используем линейную интерполяцию, т.е. $p_2(x)$:
-%\begin{equation}
-%p = f(x_1) + \fraq{f(x_2) - f(x_1)}{x_2-x_1}(x-x_1)
-%	p^{(1)} (x_1) = \fraq{f(x_1+\delta) - f(x_1)}{\delta}
-%\end{equation}
+\begin{equation}
+	\begin{aligned}
+	p &= f(x_1) + \frac{f(x_2) - f(x_1)}{x_2-x_1}(x-x_1) \\
+	{p_2}^{(1)}(x_1) &= \frac{f(x_1+\delta) - f(x_1)}{\delta}
+	\end{aligned}
+\end{equation}
 Тогда получим следующую простейшую формулу численного дифференцирования:
+\begin{dmath} \label{eq:3.10}
+	f^{(1)}(x_1) \backsimeq \frac{f(x_1 + \delta) - f(x_1)}{\delta} = {p_2}^{(1)}(x_1)
+\end{dmath}
+
+Пусть $f \in W^2(M_2, I)$, оценим точность формулы \ref{eq:3.10}.
+
+Разложим правую часть этой формулы в ряд Тейлора. Получим, что
+\begin{dmath} 
+	\begin{aligned}
+f^{(1)}(x_1) &= \frac{1}{\delta} [f(x_1) + \frac{f^{(1)}(x_1)}{1!}\delta + O(M_2\delta^2)-f(x_1)] \\
+&= f^{(1)}(x_1) + O(M_2 \delta)
+	\end{aligned}
+\end{dmath}
+Символ \textbf{$O(M_2\delta)$} обозначает величину меньшую, чем $CM_2\delta$ ($C\backsimeq$1). Таким образом
+\begin{equation}
+	|f^{(1)}(x_1) - {p_2}^{(1)}(x_1)| = O(M_2\delta)
+\end{equation}
+
+Теперь предположим, что известны величины $f(x_1), f(x_2), f(x_3)$ и $x_2=x_1+\delta, x_3 = x_2 + \delta$ и вычислим  ${p_3}^{(1)}(x_2)$. Получим, что  
+\begin{equation}
+	{p_3}^{(1)}(x_2) = \frac{f(x_1+2\delta) - f(x_1)}{2\delta} = \frac{f(x_2+\delta) - f(x_2 - \delta)}{2\delta}
+\end{equation}
+
+Пусть $f \in W^3(M_3, I)$, оценим точность формулы
+\begin{equation} \label{eq:3.14}
+	f^{(1)}(x_2) \backsimeq \frac{f(x_2+\delta) - f(x_2 - \delta)}{2\delta} = {p_3}^{(1)}(x_2)
+\end{equation}
+Разложим в ряд Тейлора правую часть этого "равенства". Получим, что
+\begin{dmath} 
+	\begin{aligned}
+		{p_3}^{(1)}(x_2) &= \frac{1}{2\delta} [f(x_2) + {f^{(1)}(x_2)}\delta + \frac{f^{(2)}(x_2)}{2} \delta^2 \\ &- f(x_2) + f^{(1)}(x_2)\delta - \frac{f^{(2)}(x_2)}{x_2} + O(M_3\delta^3)]
+	\end{aligned}
+\end{dmath}
+И следовательно
+\begin{equation}
+	f^{(1)}(x_2) =  {p_3}^{(1)}(x_2) + (M_3\delta^2)
+\end{equation}
+При "малых $\delta$" формула \ref{eq:3.14} гораздо точнее, чем \ref{eq:3.10}, и именно ее рекомендуется использовать при обработке ЭД.
+
+Численное дифференцирование --- неустойчивая операция, так как в ней присутствует деление на "малую" величину $\delta$. Рассмотрим, к чему приводит учёт ошибок в задаче численного дифференцирования.
+
+Если известны только $y_i = f(x_i) + \epsilon_i$, то формула \ref{eq:3.10} приобретает вид:
+\begin{dmath} \label{eq:3.10}
+	f^{(1)}(x_1) = \frac{y_2 - y_1}{\delta} \backsimeq \frac{f(x_1 + \delta) + \epsilon_2 - f(x_1) - \epsilon_1}{\delta} = {p_2}^{(1)}(x_1)
+\end{dmath}
+И при $f \in W^2(M_2, I)$, поступая так же, как и выше и учитывая, что $\epsilon_i$ --- случайные величины, получим, что
+\begin{dmath}
+	\begin{cases}
+		\frac{y_2 - y_1}{\delta} = f^{(1)}(x_1) + \Delta_1(\epsilon, \delta) \\
+		\Delta_1(\epsilon, \delta) \backsimeq M_2\delta + \frac{\epsilon}{\delta}
+	\end{cases}
+\end{dmath}
+\begin{equation}
+	\delta \backsimeq \sqrt{\frac{\epsilon}{M_2}} = \delta_1; \quad \Delta_1(\epsilon, \delta_1) = \sqrt(\epsilon M_2)
+\end{equation}
+\begin{dmath}
+	\begin{cases}
+		\frac{y_3 - y_1}{\delta} = f^{(1)}(x_2) + \Delta_2(\epsilon, \delta) \\ 
+		\Delta_2(\epsilon, \delta) \backsimeq M_3\delta^2 + \frac{\epsilon}{\delta}
+	\end{cases}
+\end{dmath}
+\begin{equation}
+	\delta \backsimeq {(\frac{\epsilon}{M_2})}^{\frac{1}{3}} = \delta_2; \quad \Delta_2(\epsilon, \delta_1) = \epsilon^{\frac{2}{3}} \delta^{\frac{1}{3}}
+\end{equation}
+\begin{equation}
+	\int_{a}^{b} f(x)dx = \int_{a}^{c}f(x)dx + \int_{b}^{c}f(x)dx
+\end{equation}
+\begin{equation}
+	\int_{a}^{b} f(x)dx = \sum_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}f(x)dx
+\end{equation}
+\begin{equation}
+	x_i = a + ih; \quad h = \frac{a-b}{N} \quad (n=N) \quad i=0 \dots N
+\end{equation}
+\begin{equation}
+x_i = a + ih; \quad h = \frac{a-b}{N} \quad (n=N) \quad i=0 \dots N
+\end{equation}
+\begin{dmath}
+	\begin{cases}
+		J = \int_{a}{b}fdx \backsimeq J^T_N \\ 
+		J^T_N = [\frac{1}{2}(f(a)+f(b)) + \sum_{k=1}^{N-1}f(x_k)]\frac{b-a}{N}
+	\end{cases}
+\end{dmath}
+\begin{equation}
+	|J-J^T_N| <= \frac{(b-a)^3}{N^2}M_2
+\end{equation}
+\begin{equation}
+	X = (x_0 x_1 x_2, x_2 x_3 x_4, \dots x_{2N-2}x_{2N-1}x_{2N})
+\end{equation}
+\begin{equation}
+	J=\int_{x_0}{x_2}f(x)dx + \int_{x_2}^{x_4}f(x)dx + \dots \int_{2N-2}{2N}f(x)dx
+\end{equation}
+\begin{equation}
+	x_k = a + \frac{h}{2}k, \quad h=\frac{b-a}{N}
+\end{equation}
+\begin{equation}
+	J \backsimeq J_N^S
+\end{equation}
+\begin{equation}
+	J_N^S = \frac{b-a}{6N}[f(a) + f(b) + 4\sum_{k=1}^{N}f(x_{2k-1}) + 2\sum_{k=1}^{N}f(x_2k)]
+\end{equation}
+\begin{equation}
+	|J-J^S_N| <= \frac{M_4}{12}\frac{(b-a)^5}{N^4}
+\end{equation}
