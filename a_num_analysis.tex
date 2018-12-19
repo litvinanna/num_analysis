@@ -1,12 +1,10 @@
+%-------------------BASICS-------------------
 \documentclass[oneside,final,12pt]{article} %одностороння печать, чистовая версия, размер кегля, класс документа
 \usepackage{ucs} 
 \usepackage[utf8x]{inputenc} 
 \usepackage[T2A, T1]{fontenc} 
 \usepackage[english,russian]{babel} %оформление кириллицей (подписи к таблицам и т.д.)
 \usepackage{ifpdf}
-\usepackage{float} %для плавающих картинок и таблиц
-%\usepackage{wrapfig} %для плавающих картино
-
 
 \ifpdf  %% если используется pdfTEX
 \usepackage{cmap}  %поиск по кириллице в готовом pdf
@@ -16,81 +14,107 @@
 \else   %% если используется не pdfTEX
 \usepackage[dvips]{graphicx}
 \fi
- 
 
+\setcounter{tocdepth}{2} % глубина содержания
+
+\usepackage{cite}
+
+
+
+
+%-------------------FORMAT-------------------
 \usepackage{vmargin} %размеры полос набора
 \setpapersize{A4} %формат бумаги
 \setmarginsrb{30mm}{25mm}{25mm}{25mm}{0pt}{0mm}{0pt}{13mm} %размеры полей: левое, верхнее, правое, нижнее, 3*колонтитулы, расстояние между нижним краем нижней строки и нижним краем номера страницы
 \usepackage{indentfirst} %красная строка для первого абзаца главы или параграфа
-\parindent=0cm % отступ красной строки
+\setlength{\parindent}{0cm} % отступ красной строки
+\setlength{\parskip}{2mm}
 \sloppy %борьба с залезанием строк на поля путём изменения размеров пробелов
+\pagestyle{plain} %включена нумерация страниц 
+\renewcommand{\thesection}{\arabic{section}} %арабская нумерация глав
+%\usepackage{lineno} %нумерация всех строк для отладки
+%\usepackage{textgreek} % \textalpha греческие буквы не в math mode
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\large\bfseries}{Лекция  \thesection}{1em}{} %Лекция "ее номер"     Название
+%\usepackage{verbatim} %comments
+\usepackage{setspace} %for setstretch
+
+
+%-------------------TABLES, FIGURES-------------------
+
+\usepackage{float} %для плавающих картинок и таблиц
+%\usepackage{wrapfig} %для плавающих картинок
+\usepackage[font=small]{caption}
+
+%\usepackage{booktabs} %отступы в tabular
+%\usepackage{colortbl} %раскаршивание таблиц
+%\usepackage{xcolor} %название цветов
+%\usepackage{longtable}% перенос таблиц на страницах
+%\definecolor{dark-gray}{gray}{0.4} %определение цвета
+%\newcommand{\graytable}[0]{\arrayrulecolor{dark-gray}} % сделать таблицу серой
+%\newcommand{\thinrule}[0]{\specialrule{0.3pt}{4pt}{4pt}} % тоненькая линия
+%\newcommand{\verythinrule}[0]{\specialrule{0.1pt}{1pt}{1pt}} %очень тоненькая линия если надо
+%\newcommand{\invisiblerule}[0]{\specialrule{0pt}{2pt}{2pt}} %просто создать пустого места в таблице
+
+\usepackage{subcaption} % несколько картинок в одной
+\usepackage{multirow} % объединение ячеек
+\usepackage{enumitem} %особенности enumerate
+\usepackage{pbox} % для переносов внутри ячейки таблицы
+\usepackage{array} 
+
+% рисование графиков
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{rotating}
+\usetikzlibrary{calc, intersections}
+\usetikzlibrary{arrows.meta}
+
+
+
+
+
+
+%-------------------MATH-------------------
+
 \usepackage{amsmath} %дополнительные средства для вёрстки формул
 \everymath{\displaystyle}
 \usepackage{breqn} %для dmath разбить длинную формулу
 %\usepackage{esvect} %vectors
-
 %\usepackage{amscd} %диаграммы
 \usepackage{amsfonts} %дополнительные шрифты для формул
 \usepackage{amssymb} %дополнительные символы для формул
-\usepackage[nottoc,notlot,notlof]{tocbibind}
-
-\pagestyle{plain} %включена нумерация страниц 
-\renewcommand{\thesection}{\arabic{section}} %одинарная нумерация формул
-
-
-\usepackage{verbatim} %comments
-
-\usepackage[font=small]{caption}
-\usepackage{booktabs} %отступы в tabular
-\usepackage{colortbl} %раскаршивание таблиц
-\usepackage{xcolor} %название цветов
-
-
-
-\usepackage{lineno} %нумерация всех строк для отладки
-\usepackage{enumitem} %особенности enumerate
-\usepackage{pbox} % для переносов внутри ячейки таблицы
-\usepackage{array} %??
-\usepackage{longtable}% перенос таблиц на страницах
-
-\newlength{\width}
-\setlength{\width}{0.97\textwidth} % у меня почему-то textwidth шире, чем текст и таблицы вылезали, поэтому я сделала меру длины поменьше
-\definecolor{dark-gray}{gray}{0.4} %определение цвета
-\newcommand{\graytable}[0]{\arrayrulecolor{dark-gray}} % сделать таблицу серой
-\newcommand{\thinrule}[0]{\specialrule{0.3pt}{4pt}{4pt}} % тоненькая линия
-\newcommand{\verythinrule}[0]{\specialrule{0.1pt}{1pt}{1pt}} %очень тоненькая линия если надо
-\newcommand{\invisiblerule}[0]{\specialrule{0pt}{2pt}{2pt}} %просто создать пустого места в таблице
-
-
-
-%\usepackage{textgreek} % \textalpha греческие буквы не в math mode
-\usepackage{subcaption} % несколько картинок в одной
-\usepackage{multirow} % объединение ячеек
-\setcounter{tocdepth}{2} % глубина содержания
-
-\usepackage{setspace} %for setstretch
-\usepackage{cite}
-
-\numberwithin{equation}{section} % нумерация формул внутри главы
-
 \usepackage{amsfonts} %для букв с двойными штрихами
 \usepackage{mathrsfs} % еще шрифт
+\numberwithin{equation}{section} % нумерация формул внутри главы
+\usepackage{mathtools} % больгие нули в матрице
+
+
+%-------------------BIBLIOGRAPHY-------------------
+%\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+
+
+
+
+
+
 
 
 \begin{document}
-        \include{titlepage} \newpage
-        \tableofcontents \newpage
-%        \include{templates} \newpage
-        \include{lecture1} \newpage
-        \include{lecture2} \newpage
-        \include{lecture3} \newpage
-        \include{lecture4} \newpage
-        \include{lecture5} \newpage
-        \include{lecture6} \newpage
-        \include{lecture7} \newpage
+%%		\include{titlepage}
+%        \tableofcontents \newpage
+%%        \include{templates} \newpage
+%        \include{lecture1}
+%        \include{lecture2} \newpage
+%        \include{lecture3} \newpage
+%        \include{lecture4} \newpage
+%        \include{lecture5} \newpage
+%        \include{lecture6} \newpage
+%        \include{lecture7} \newpage
         \include{lecture8} \newpage
         \include{lecture9} \newpage
         \include{lecture10} \newpage
         
-        \footnotesize \bibliographystyle{mybib5.bst}  
+       %\footnotesize \bibliographystyle{mybib5.bst}  
 \end{document}
