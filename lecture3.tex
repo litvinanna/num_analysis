@@ -13,10 +13,7 @@
 	\dots
 \end{cases}
 \end{dmath}
-Так как формула (\ref{eq:3.1}) не зависит от нумерации точек разбиения, то для её доказательства достаточно перейти к нумерации, в которой $x_1$ заменяется на $x_j$ (???). Эта формула удобна тем, что при добавлении точки $x_{n+1}$ к формуле (\ref{eq:3.1}) надо просто прибавить $f(x_1, x_2, \dots, x_n, x_{n+1})(x-x_1)\dots(x-x_{n-1})(x-x_n)$. Кроме того, эта формула указывает на связь интерполяционного полинома с разложением в ряд Тейлора.\\
-Чтобы это увидеть, рассмотрим равномерное разбиение (\ref{eq:2.24}), в котором $x_{i+1}-x_i=\delta$. Тогда 
-=======
-Так как формула \ref{eq:3.1} не зависит от нумерации точек разбиения, то для её доказательства достаточно перейти к нумерации, в которой $x_1$ заменяется на $x_j$ (???). Эта формула удобна тем, что при добавлении точки $x_{n+1}$ к формуле \ref{eq:3.1} надо просто прибавить $f(x_1, x_2, \dots, x_n, x_{n+1})(x-x_1)\dots(x-x_{n-1})(x-x_n)$. Кроме того, эта формула указывает на связь интерполяционного полинома с разложением в ряд Тейлора.
+Так как формула \ref{eq:3.1} не зависит от нумерации точек разбиения, то для её доказательства достаточно перейти к нумерации, в которой $x_1$ заменяется на $x_j$. Эта формула удобна тем, что при добавлении точки $x_{n+1}$ к формуле \ref{eq:3.1} надо просто прибавить $f(x_1, x_2, \dots, x_n, x_{n+1})(x-x_1)\dots(x-x_{n-1})(x-x_n)$. Кроме того, эта формула указывает на связь интерполяционного полинома с разложением в ряд Тейлора.
 
 Чтобы это увидеть, рассмотрим равномерное разбиение \ref{eq:2.24}, в котором $x_{i+1}-x_i=\delta$. Тогда 
 \begin{dmath}
@@ -100,48 +97,48 @@ f^{(1)}(x_1) &= \frac{1}{\delta} [f(x_1) + \frac{f^{(1)}(x_1)}{1!}\delta + O(M_2
 \end{dmath}
 И следовательно
 \begin{equation}
-	f^{(1)}(x_2) =  {p_3}^{(1)}(x_2) + (M_3\delta^2)
+	f^{(1)}(x_2) =  {p_3}^{(1)}(x_2) + O(M_3\delta^2)
 \end{equation}
 При "'малых $\delta$"' формула \ref{eq:3.14} гораздо точнее, чем \ref{eq:3.10}, и именно ее рекомендуется использовать при обработке ЭД.
 
 Численное дифференцирование --- неустойчивая операция, так как в ней присутствует деление на "'малую"' величину $\delta$. Рассмотрим, к чему приводит учёт ошибок в задаче численного дифференцирования.
 
-Если известны только $y_i = f(x_i) + \epsilon_i$, то формула \ref{eq:3.10} приобретает вид:
-\begin{dmath} \label{eq:3.10}
-	f^{(1)}(x_1) = \frac{y_2 - y_1}{\delta} \backsimeq \frac{f(x_1 + \delta) + \epsilon_2 - f(x_1) - \epsilon_1}{\delta} = {p_2}^{(1)}(x_1)
+Если известны только $y_i = f(x_i) + \varepsilon_i$, то формула \ref{eq:3.10} приобретает вид:
+\begin{dmath}
+	f^{(1)}(x_1) = \frac{y_2 - y_1}{\delta} \backsimeq \frac{f(x_1 + \delta) + \varepsilon_2 - f(x_1) - \varepsilon_1}{\delta} = {p_2}^{(1)}(x_1)
 \end{dmath}
-И при $f \in W^2(M_2, I)$, поступая так же, как и выше и учитывая, что $\epsilon_i$ --- случайные величины, получим, что
+И при $f \in W^2(M_2, I)$, поступая так же, как и выше и учитывая, что $\varepsilon_i$ --- случайные величины, получим, что
 \begin{dmath}
 	\begin{cases}
-		\frac{y_2 - y_1}{\delta} = f^{(1)}(x_1) + \Delta_1(\epsilon, \delta) \\
-		\Delta_1(\epsilon, \delta) \backsimeq M_2\delta + \frac{\epsilon}{\delta}
+		\frac{y_2 - y_1}{\delta} = f^{(1)}(x_1) + \Delta_1(\varepsilon, \delta) \\
+		\Delta_1(\varepsilon, \delta) \backsimeq M_2\delta + \frac{\varepsilon}{\delta}
 	\end{cases}
 \end{dmath}
-Величина $\Delta_1(\epsilon, \delta)$ минимальна при
+Величина $\Delta_1(\varepsilon, \delta)$ минимальна при
 \begin{equation}
-	\delta \backsimeq \sqrt{\frac{\epsilon}{M_2}} = \delta_1; \quad \Delta_1(\epsilon, \delta_1) = \sqrt(\epsilon M_2)
+	\delta \backsimeq \sqrt{\frac{\varepsilon}{M_2}} = \delta_1; \quad \Delta_1(\varepsilon, \delta_1) = \sqrt{\varepsilon M_2}
 \end{equation}
 Таким образом, если при наличии ошибок мы выбираем $\delta<\delta_1$, то ошибка численного дифференцирования не уменьшится, а возрастет. В эксперименте $\delta$ --- это интервал между измерениями, и т.о. при наличии шума (случайных ошибок) не следует мерить слишком часто.
 
 В случае формулы \ref{eq:3.14} аналогично предыдущему получим, что
 \begin{dmath}
 	\begin{cases}
-		\frac{y_3 - y_1}{\delta} = f^{(1)}(x_2) + \Delta_2(\epsilon, \delta) \\ 
-		\Delta_2(\epsilon, \delta) \backsimeq M_3\delta^2 + \frac{\epsilon}{\delta} \quad (|\epsilon_i|<\epsilon)
+		\frac{y_3 - y_1}{\delta} = f^{(1)}(x_2) + \Delta_2(\varepsilon, \delta) \\ 
+		\Delta_2(\varepsilon, \delta) \backsimeq M_3\delta^2 + \frac{\varepsilon}{\delta} \quad (|\varepsilon_i|<\varepsilon)
 	\end{cases}
 \end{dmath}
 Оптимальной является величина
 \begin{equation}
-	\delta \backsimeq {(\frac{\epsilon}{M_2})}^{\frac{1}{3}} = \delta_2; \quad \Delta_2(\epsilon, \delta_1) = \epsilon^{\frac{2}{3}} \delta^{\frac{1}{3}}
+	\delta \backsimeq {(\frac{\varepsilon}{M_2})}^{\frac{1}{3}} = \delta_2; \quad \Delta_2(\varepsilon, \delta_1) = \varepsilon^{\frac{2}{3}} \delta^{\frac{1}{3}}
 \end{equation}
-Так как $\epsilon$ --- "'малая величина"' , то 
+Так как $\varepsilon$ --- "'малая величина"' , то 
 \begin{equation}
-	\delta_2 >> \delta_1 \quad но \quad \Delta_2(\epsilon, \delta_2) \backsimeq \Delta_1(\epsilon, \delta_1)
+	\delta_2 >> \delta_1 \quad но \quad \Delta_2(\varepsilon, \delta_2) \backsimeq \Delta_1(\varepsilon, \delta_1)
 \end{equation}
 
 Переходим к формулам численного интегрирования. В пакетах прикладных программ эти формулы называются \textbf{квадратурными}.
 
-В отличие от численного дифференцирования, численное интегрирование --- это устойчивая операция, и учет ошибок $\epsilon_i$ не играет роли при оценке точности квадратурных формул.
+В отличие от численного дифференцирования, численное интегрирование --- это устойчивая операция, и учет ошибок $\varepsilon_i$ не играет роли при оценке точности квадратурных формул.
 
 Будем предполагать, что задано разбиение $X=(x_0=a<x_1<x_2\dots<x_n=b)$ и известны величины $f(x_i)$. Если число $n$ велико, то использование формулы \ref{eq:2.8} для построения квадратурных формул требует использования полиномов высокого порядка. Чтобы этого избежать, на практике используются \textbf{составные квадратурные формулы}. Эти формулы основаны на том, что
 \begin{equation}
@@ -175,7 +172,7 @@ x_i = a + ih; \quad h = \frac{a-b}{N} \quad (n=N) \quad i=0 \dots N
 \end{equation}
 и интеграл $J$ записывается в виде
 \begin{equation}
-	J=\int_{x_0}{x_2}f(x)dx + \int_{x_2}^{x_4}f(x)dx + \dots \int_{2N-2}{2N}f(x)dx
+	J=\int_{x_0}^{x_2}f(x)dx + \int_{x_2}^{x_4}f(x)dx + \dots \int_{2N-2}^{2N}f(x)dx
 \end{equation}
 В каждом из интегралов в правой части этой формулы $f(x)$ заменяется на $p_3(x)$. Если разбиение равномерно
 \begin{equation}
