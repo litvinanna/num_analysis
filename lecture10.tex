@@ -1,122 +1,123 @@
-\section{Лекция 10. Дискретное преобразование Фурье (ДПФ)}
+\section{Дискретное преобразование Фурье (ДПФ)}
+\label{lecture10}
 
-В Лекции 9 было введено преобразование Фурье $f(t) \xrightarrow{\mathscr{F}} \hat{f}\omega$. На практике, как правило, известно только конечное число ее отсчетов $f(t_n)\quad n = 0 \; ...\;N-1$. \textbf{Дискретное преобразование Фурье} $\hat{f}^D\omega$ служит заменой $\hat{f}\omega$.
+В Лекции \ref{lecture9} было введено преобразование Фурье $f(t) \xrightarrow{\mathscr{F}} \hat{f}(\omega)$. На практике, как правило, известно только конечное число ее отсчетов $f(t_n),\quad n = 0 \; ...\;N-1$. \textbf{Дискретное преобразование Фурье} $\hat{f}^D(\omega)$ служит заменой $\hat{f}(\omega)$.
 
-Определим ДПФ $\hat{f}^D\omega$. Пусть
+Определим ДПФ $\hat{f}^D(\omega)$. Пусть
 
 \begin{equation}\label{10.1}
-f(t) = 0 \quad
+f(t) = 
 \begin{cases}
-t < 0 \\
-t > T
+0, t < 0 \\
+0, t > T.
 \end{cases}
 \end{equation}
 Тогда
 \begin{equation}\label{10.2}
-\hat{f}\omega = \int_{0}^{T}e^{-i\omega t}f(t)dt
+\hat{f}\omega = \int_{0}^{T}e^{-i\omega t}f(t)dt.
 \end{equation}
 Будем предполагать, что известны величины
 \begin{equation}\label{10.3}
 \begin{gathered}
-f_n = f(n \Delta t) \quad n = 0 ... N-1 \\
-\Delta t = \frac{T}{N}
+f_n = f(n \Delta t), \quad n = 0 ... N-1 \\
+\Delta t = \frac{T}{N}.
 \end{gathered}
 \end{equation}
 
-ДПФ $\hat{f}^D\omega$ определяется формулой
+ДПФ $\hat{f}^D(\omega)$ определяется формулой
 \begin{equation}\label{10.4}
-\hat{f}^D\omega = \sum_{n = 0}^{N - 1} e^{-i \omega nt}f_n\Delta t
+\hat{f}^D(\omega) = \sum_{n = 0}^{N - 1} e^{-i \omega nt}f_n\Delta t.
 \end{equation}
 
-Это просто результат замены интеграла в \ref{10.2} интегральной суммой.
+Это просто результат замены интеграла в уравнении \ref{10.2} интегральной суммой.
 
-Нас интересует конечное число значений $\hat{f}^D\omega$, т.е. величины 
+Нас интересует конечное число значений $\hat{f}^D\omega$, то есть величины 
 
 \begin{equation}\label{10.5}
-A_j = \hat{f}^D(j \Delta \omega) \quad j = 0, 1 ... N
+A_j = \hat{f}^D(j \Delta \omega), \quad j = 0, 1 ... N.
 \end{equation}
 
 Возникает вопрос: как выбрать значение $\Delta \omega$.
-В отличие от $ \hat{f}(\omega)$, $\hat{f}^D(\omega)$ периодическая функция с периолом $\Omega$
+В отличие от $ \hat{f}(\omega)$, $\hat{f}^D(\omega)$ периодическая функция с периодом $\omega$
 
 \begin{equation}\label{10.6}
-\hat{f}^D(\omega + \Omega) = \hat{f}^D(\omega), \quad \Omega = \frac{2\pi}{\Delta t}.
+\hat{f}^D(\omega + \omega) = \hat{f}^D(\omega), \quad \omega = \frac{2\pi}{\Delta t}.
 \end{equation}
 
 Поэтому естественно выбрать $\Delta \omega$ из условия
 \begin{equation}\label{10.7}
-\Delta \omega = \frac{\Omega}{N} = \frac{2\pi}{T} \text{ и } \Delta t \Delta \omega = \frac{2\pi}{N}.
+\Delta \omega = \frac{\omega}{N} = \frac{2\pi}{T} \text{ и } \Delta t \Delta \omega = \frac{2\pi}{N}.
 \end{equation}
 
 В этом случае
 \begin{equation}\label{10.8}
-A_j = \frac{1}{N}\sum_{n = 0}^{N - 1} e^{-i \frac{2\pi n}{N}} a_n \quad i = 0 ... N - 1
+A_j = \frac{1}{N}\sum_{n = 0}^{N - 1} e^{-i \frac{2\pi n}{N}} a_n, \quad i = 0 ... N - 1,
 \end{equation}
 
 и в этой формуле
 \begin{equation}\label{10.9}
-a_n = f_n T \quad n = 0 ... N-1
+a_n = f_n T, \quad n = 0 ... N-1.
 \end{equation}
 
-В общем случае (отвлекаясь от ормулы \ref{10.9}) говорят, что $\{A_j\}$ это \textbf{ДФП последовательности} $\{a_n\}$ и 
+В общем случае (отвлекаясь от формулы \ref{10.9}) говорят, что $\{A_j\}$ -- это \textbf{ДФП последовательности} $\{a_n\}$, и 
 
 \begin{equation}\label{10.10}
-\{a_n\} \xrightarrow{\mathscr{F}_D} \{A_j\}
+\{a_n\} \xrightarrow{\mathscr{F}_D} \{A_j\}.
 \end{equation}
 
 Основанием для такого определения служит \textbf{формула обращения}
 
 \begin{equation}\label{10.11}
- \{A_j\}\xrightarrow{\mathscr{F}^{-1}_D} \{a_n\} 
+ \{A_j\}\xrightarrow{\mathscr{F}^{-1}_D} \{a_n\} ,
 \end{equation}
 определяемая равенством
 
 \begin{equation}\label{10.12}
-a_n = \sum_{i = 0}^{N - 1} e^{i \frac{2\pi n}{N}} j A_j \quad i = 0 ... N - 1
+a_n = \sum_{i = 0}^{N - 1} e^{i \frac{2\pi n}{N}} j A_j, \quad i = 0 ... N - 1.
 \end{equation}
 
 Докажем эту формулу. Если в \ref{10.12} подставить выражения для $A_i$ из \ref{10.8}, то должно выполняться равенство
 \begin{equation}\label{10.13}
-a_n = \sum_{k = 0}^{N - 1} \frac{a_k}{N} \sum_{i = 0}^{N - 1} e^{i \frac{2\pi }{N}}(n-k) j 
+a_n = \sum_{k = 0}^{N - 1} \frac{a_k}{N} \sum_{i = 0}^{N - 1} e^{i \frac{2\pi }{N}}(n-k) j,
 \end{equation}
 
-которое дейтвительно выполняется, так как
+которое действительно выполняется, так как
 
 \begin{equation}\label{10.14}
-\sum_{i = 0}^{N - 1} e^{i \frac{2\pi }{N}}(n-k) j = N\delta_{n,k}
+\sum_{i = 0}^{N - 1} e^{i \frac{2\pi }{N}}(n-k) j = N\delta_{n,k}.
 \end{equation}
 
-Это равенство следствие формулы для суммы геометрической прогрессии
+Это равенство -- следствие формулы для суммы геометрической прогрессии
 \begin{equation}\label{10.15}
-\sum_{i = 0}^{N - 1} x^i = \frac{1-x^N}{1-x}
+\sum_{i = 0}^{N - 1} x^i = \frac{1-x^N}{1-x}.
 \end{equation}
 
 Мы определили ДПФ $\hat{f}^D(\omega)$, но нас интересует $\hat{f}(\omega)$. Рассмотрим вопрос о связи этих двух функций. Для достаточно гладкой функции $f(t)$  $\hat{f}(\omega)$ достаточно быстро убывает при $|\omega| \rightarrow \infty $. Это следует из того, что (см. \ref{9.21})
 
 \begin{equation}\label{10.16}
-f^{(k)}(t) \equiv \frac{d^k}{dt^n}f(t) = \int_{-\infty}^{+\infty} (-i\omega)^k \hat{f}(\omega)d\omega
+f^{(k)}(t) \equiv \frac{d^k}{dt^n}f(t) = \int_{-\infty}^{+\infty} (-i\omega)^k \hat{f}(\omega)d\omega,
 \end{equation}
 
-и следовательно
+и, следовательно,
 
 \begin{equation}\label{10.17}
-\int_{-\infty}^{+\infty}\omega^k \hat{f}(\omega)d\omega < \infty
+\int_{-\infty}^{+\infty}\omega^k \hat{f}(\omega)d\omega < \infty.
 \end{equation}
 
-Таким образом, определени функция
+Таким образом, определена функция
 
 \begin{equation}\label{10.18}
 \begin{gathered}
-F(\omega) = \sum_{n = -\infty}^{+\infty} \hat{f}(\omega+ n\Omega), \\
-F(\omega+\Omega) = f(\Omega),
+F(\omega) = \sum_{n = -\infty}^{+\infty} \hat{f}(\omega+ n\omega), \\
+F(\omega+\omega) = f(\omega),
 \end{gathered}
 \end{equation}
 
-имеющая, как и $\hat{f}^D(\omega)$, период $\Omega$. 
-Оказывается, что эта функция совпадает с $\hat{f}^D(\omega)$ т.е.
+имеющая, как и $\hat{f}^D(\omega)$, период $\omega$. 
+Оказывается, что эта функция совпадает с $\hat{f}^D(\omega)$, то есть
 
 \begin{equation}\label{10.19}
-\hat{f}^D(\omega) = \sum_{n = -\infty}^{+\infty} \hat{f}(\omega+ n\Omega)
+\hat{f}^D(\omega) = \sum_{n = -\infty}^{+\infty} \hat{f}(\omega+ n\omega).
 \end{equation}
 
 Эта формула называется формулой Пуассона.
@@ -124,12 +125,12 @@ F(\omega+\Omega) = f(\Omega),
 Так как $\hat{f}(\omega)$ достаточно быстро убывает при $|\omega| \rightarrow \infty $, то можно предположить что, если $\Delta t$ достаточно мало, то
 
 \begin{equation}\label{10.20}
-\hat{f}^D(\omega) \simeq \hat{f}(\omega) \quad |\omega| < \frac{\Omega}{2}
+\hat{f}^D(\omega) \simeq \hat{f}(\omega) \quad |\omega| < \frac{\omega}{2}.
 \end{equation}
 
-Интервал $|\omega| < \frac{\Omega}{2}$ называется \textbf{интервалом Найквиста}.
+Интервал $|\omega| < \frac{\omega}{2}$ называется \textbf{интервалом Найквиста}.
 
-Картина приближения функции $\hat{f}(\omega)$ с помощью $\hat{f}^D(\omega)$ при достатоно малом значении $\Delta t$ представлена на рисунке Х.
+Картина приближения функции $\hat{f}(\omega)$ с помощью $\hat{f}^D(\omega)$ при достаточно малом значении $\Delta t$ представлена на рисунке Х.
 
 Если величина $\Delta t$ не достаточно мала, то возникает \textbf{эффект наложения} при котором вклад высоких частот искажает информацию о поведении $\hat{f}(\omega)$ при низких частотах (См. Рис 11).
 
