@@ -62,11 +62,14 @@
 \usepackage{pbox} % для переносов внутри ячейки таблицы
 \usepackage{array} 
 
-
+% рисование графиков
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \usepackage{rotating}
+\usetikzlibrary{calc, intersections}
+\usetikzlibrary{arrows.meta}
+
 
 
 
@@ -97,20 +100,20 @@
 
 
 
+
 \begin{document}
-%        \include{titlepage} \newpage
-%        \tableofcontents \newpage
-%        \include{templates} \newpage
-%        \include{lecture1}
-%        \include{lecture2} \newpage
-%        \include{lecture3} \newpage
-%        \include{lecture4} \newpage
-%        \include{lecture5} \newpage
-%        \include{lecture6} \newpage
-%       \include{lecture7} \newpage
+		\include{titlepage}
+        \tableofcontents \newpage
+        \include{lecture1}
+        \include{lecture2} \newpage
+        \include{lecture3} \newpage
+        \include{lecture4} \newpage
+        \include{lecture5} \newpage
+        \include{lecture6} \newpage
+        \include{lecture7} \newpage
         \include{lecture8} \newpage
-%        \include{lecture9} \newpage
-%        \include{lecture10} \newpage
-        
+        \include{lecture9} \newpage
+        \include{lecture10} \newpage
+       
        %\footnotesize \bibliographystyle{mybib5.bst}  
 \end{document}

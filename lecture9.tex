@@ -1,0 +1,248 @@
+\section{Лекция 9. Преобразование Фурье и его приложения}
+Чтобы подойти к определению преобразования Фурье сначала рассмотрим фукцию $f(t)$ с периодом $2\pi$.
+
+\begin{equation}\label{9.1}
+	f(t+2\pi) = f(t)
+\end{equation}
+
+Такая функция раскаладывается в ряд Фурье 
+
+\begin{equation}\label{9.2}
+f(t) = \frac{a_0}{2} + \sum_{n = 1}^{\infty}(a_n cos(nt) + b_n sin(nt)) 
+\end{equation}
+
+Для сходимости этого ряда достаточно предположить, что $f(t)$ -- непрерывная функция.
+Коэффициенты Фурье $a_n$, $b_n$ задаются равенствами
+
+\begin{equation}\label{9.3}
+a_n = \frac{1}{\pi} \int_{0}^{2\pi} f(t) cos(nt) dt,\quad b_n = \frac{1}{\pi} \int_{0}^{2\pi} f(t) sin(nt) dt
+\end{equation} 
+
+Если $t$ -- время, то функцию $f(t)$ принято называть \textbf{сигналом}. 
+Таким образом у нас есть взаимооднозначное соответствие $f(t) \rightarrow \{a_n, b_n\}$, и все свойства функции $f(t)$ имеют свое отражение в свойствах множества $\{a_n, b_n\}$.
+
+В случае непериодических функций аналогом формулы \ref{9.2} является равенство 
+
+\begin{equation}\label{9.4}
+f(t) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} e^{i\omega t} \hat{f} (\omega) d\omega,
+\end{equation}
+где функция $\hat{f}(\omega)$ называется \textbf{преобразованием Фурье} функции $f(t)$ ($ \hat{f} = \mathscr{F} f$)
+о определяется равенством 
+
+\begin{equation}\label{9.5}
+\hat{f} (\omega) = \int_{-\infty}^{+\infty} e^{-i\omega t} f(t) dt,
+\end{equation}
+Величина $\hat{f} (\omega)$ во всяком случае существует, если 
+
+\begin{equation}\label{9.6}
+\int_{-\infty}^{+\infty} |f(t)| dt < \infty
+\end{equation}
+
+и в этом случае имеет место \textbf{формула обращения} \ref{9.4}  $(f =\mathscr{F}^{-1} \hat{f})$.
+Функция $\hat{f}(\omega)$ часто называется \textbf{спектром сигнала} $f(t)$. 
+
+Объясним происхождение формулы обращения и приведем ее эвристический вывод. Используя формулы Эйлера
+
+\begin{equation}\label{9.7}
+	\cos nt = \frac{1}{2}(e^{i n t} + e^{-i n t}), \quad 	\sin nt = \frac{1}{2i}(e^{i n t} - e^{-i n t}), 
+\end{equation}
+запишем формулу \ref{9.2} в виде
+
+\begin{equation}\label{9.8}
+f(t) = \sum_{n = -\infty}^{+\infty} c_n e^{int}
+\end{equation}
+
+\begin{equation} \label{9.9}
+c_n = \frac{1}{2\pi} \int_{-\pi}^{+\pi} f(t) e^{-i n t} dt
+\end{equation}
+
+В формуле \ref{9.9}
+\begin{equation}\label{9.10}
+c_n = \frac{1}{2}(a_n - ib_n) \; n \geq 0, \quad c_{-n} =  \frac{1}{2}(a_n + ib_n). 
+\end{equation}
+
+Формула \ref{9.4} аналог формулы \ref{9.8}, а формула \ref{9.5} -- аналог \ref{9.9}.
+
+Идея "вывода" формулы обращения \ref{9.4} состоит в том, чтобы рассматривать непериодические функции как пределы периодических при стремлении периода к бесконечности. 
+
+Пусть функция $f(x)$ имеет период $2e$ и
+\begin{equation}\label{9.11}
+f(x+2e) = f(x)
+\end{equation}
+
+\begin{equation}\label{9.12}
+g(t) = f\left(\frac{et}{\pi}\right) \quad x = \frac{et}{\pi}, \; t = \frac{\pi x}{e}
+\end{equation}
+имеет период $2\pi$ и 
+
+\begin{equation}\label{9.13}
+g(t+2\pi) = g(t)
+\end{equation}
+
+Разлагая $g(t)$ в ряд Фурье и переходя к переменной $x$, получим, что 
+
+\begin{equation}\label{9.14}
+f(x) = \sum_{n = -\infty}^{+\infty}c_n e^{i n \frac{\pi x}{e}}
+\end{equation}
+
+\begin{equation}\label{9.15}
+c_n = \frac{1}{2e} \int_{-e}^{e} e^{-i n \frac{\pi y}{e}} f(y) dn
+\end{equation}
+	
+и таким образом 
+\begin{equation}\label{9.16}
+f(x) = \frac{1}{2\pi}\sum_{n = -\infty}^{+\infty} \Delta\omega e^{in\Delta\omega ln x} \int_{-\infty}^{+\infty} e^{-in\Delta\omega y} f(y) dy , \Delta\omega=\frac{\pi}{e}	
+\end{equation}
+
+Так как
+
+\begin{equation}\label{9.17}
+\int_{-\infty}^{+\infty} e^{i\omega x} F(\omega)d\omega \simeq	\sum_{n = -\infty}^{+\infty} e^{in\Delta\omega x} F(n\Delta\omega)\Delta\omega y,
+\end{equation}	
+
+то при $e \rightarrow 0$ из \ref{9.6} следует, что 
+
+\begin{equation}
+f(x) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} e^{i\omega x}d\omega \int_{-\infty}^{+\infty} e^{i\omega y}f(y)dn = \frac{1}{2\pi}\int_{-\infty}^{+\infty}e^{i\omega x} \hat{f}(\omega)d\omega
+\end{equation}
+Заменяя $х$ на $t$ получаем формулу обращения \ref{9.4}.
+
+Рассмотрим некоторые свойства преобразования Фурье. Найдем, например, преобразование Фурье $\hat f^{(1)} (\omega)$ производной $f^{(1)}(t)$
+
+\begin{equation}\label{9.19}
+f^{(1)}(t) = \frac{d}{dt} \frac{1}{2\pi} \int_{-\infty}^{+\infty} \hat{f^{(1)}}(\omega) e^{-i\omega t}d\omega
+\end{equation}
+С другой стороны 
+\begin{equation}\label{9.20}
+f^{(1)}(t) = \frac{d}{dt} \frac{1}{2\pi} \int_{-\infty}^{+\infty} e^{-i\omega t} \hat{f}(\omega)d\omega = \frac{1}{2\pi} \int_{-\infty}^{+\infty}(-i\omega)\hat{f}(\omega) e^{-i\omega t}d\omega
+\end{equation}
+
+Таким образом
+\begin{equation}\label{9.21}
+\hat{f^{(1)}}(\omega) = -i\omega \hat{f}(\omega)
+\end{equation}
+и на языке преобразований Фурье дифференцирование -- это умножение $\hat{f}(\omega)$ на $(-i\omega)$.
+
+Это позволяет, например, решить дифференциальное уравнение вида
+
+\begin{equation}\label{9.22}
+f^{(2)}(t) + a f^{(1)}(t) + bf(t) = g(t)
+\end{equation}
+
+Беря преобразование Фурье от обеих частей этого равенства, получим, что 
+\begin{equation}\label{9.23}
+\begin{gathered}
+(-i\omega)^2 \hat{f}(\omega) + a(-i\omega) \hat{f}(\omega)+b\hat{f}(\omega) = g(\omega) \\
+\hat{f}(\omega) = \frac{\hat{g}(\omega)}{-\omega^2-i\omega a + b} \; \text{и} \; f(t)= \mathscr{F}^{-1} (\hat{f}(\omega)).
+\end{gathered}
+\end{equation}
+
+Будем говорить, что $f(t)$ имеет эффективный носитель $L(f) \sim a$, если при $|x|>\alpha a $,  $\;\alpha >> 1 \;$ $f(x)$ достаточно быстро убывает, например как $e^{-|x|}$. Оказывается, что 
+
+\begin{equation}\label{9.24}
+L(f) L(\hat{f}) \sim 1.
+\end{equation}
+
+Это соотношение называется \textbf{"соотношением неопределенностей"}. Оно показывает с какой точностью можно одновременно локализовать $f(x)$ и $\hat{f}(\omega)$. Знаменитое соотношение неопределенности $\Delta p \Delta x \sim h$ в квантовой механикеявляется следствием \ref{9.24}. Рассмотрим пример
+
+\begin{equation}\label{9.25}
+\begin{gathered}
+f(t)=e^{-a^2t^2}, L(f) \sim \frac{1}{a},\\
+\hat{f}(\omega)=\frac{\sqrt{n}}{a} e^{-\frac{\omega^2}{na^2}}, L(\hat{f}) \sim a,
+\end{gathered}
+\end{equation}
+
+что и доказывает \ref{9.24} для рассматриваеой функции $f(t)$.
+
+В теории преобразований Фурье большую роль играет понятие свертки $f_1*f_2 $ двух функций. 
+По определению 
+
+\begin{equation}\label{9.26}
+(f_1*f_2)(t) = \int_{-\infty}^{+\infty}f_1(g)f_2(t-g)dg = (f_2*f_1)(t).
+\end{equation}
+
+Значение этой операции объясняется тем, что
+
+\begin{equation}\label{9.27}
+\hat{(f_1*f_2)}(\omega) = \hat{f_1}(\omega)\hat{f_2}(\omega)
+\end{equation}
+
+Полезность преобразования Фурье в задачах обработки экспериментальных данных  проиллюстрируем двумя примерами.
+В качестве первого примера рассмотрим \textbf{задачу сглаживания}.
+
+На рисХ представлен результат сглаживания $R$ четной функции $f(t)$.
+
+Следующая последовательность отображений описывает алгоритм сглаживания $R$.
+
+\begin{math}
+\begin{gathered}
+f(t) \xrightarrow{\mathscr{F}} \hat{f}(\omega) \xrightarrow{R} \hat{f}(\omega)R(\omega)  \xrightarrow{\mathscr{F}^{-1}} f_R(t) =(f\otimes H_R)(t) \\ 
+\hat{H_R}(\omega)=R(\omega), \quad R(\omega)=R(-\omega) 
+\end{gathered}
+\end{math}
+
+
+Сглаживание (фильтр высоких частот) задается функцией $R(\omega)$, вид которой представлен на рисункеУ.
+
+Так как спектр шума (случайных ошибок) лежит в высоких частотах, то сглаживание используется и для \textbf{фильтрации} шума.
+
+В качестве второго примера рассмотрим задачу обнаружения малого сигнала $\Delta f(t)$, содержащего высокочастотную компоненту, на фоне большого низкочасотного сигнала $f_0(t)$.
+
+Пусть
+\begin{equation}\label{9.28}
+\begin{gathered}
+f(t)=f_0(t)+\Delta f(t) \\
+f_0(t)=e^{-a^2t^2}, \Delta f(t)= \varepsilon cos \omega_0 t e^{-b^2t^2} \quad \varepsilon << 1
+\end{gathered}
+\end{equation}
+
+При малых $\varepsilon$ сигнал $\Delta f(t)$ "плохо видим" на фоне $f_0(t)$. Переходим к преобразованию Фурье. Используя \ref{9.25} имеем
+
+
+\begin{equation}\label{9.29}
+\begin{gathered}
+\hat{f}_0(\omega) \sim a^{-1} e^{\frac{-\omega^2}{4a^2}} \\
+\Delta\hat{f}(\omega) \sim \frac{\varepsilon}{b} \left(e^{-\frac{(\omega-\omega_0)^2}{4b^2}} + e^{-\frac{(\omega+\omega_0)^2}{4b^2}} \right)
+\end{gathered}
+\end{equation}
+
+Величина $\Delta\hat{f}(\omega_0)$ имеет максимум при $\omega = \omega_0$ и 
+\begin{equation}\label{9.30}
+\Delta\hat{f}(\omega_0) \sim \varepsilon b^{-1}
+\end{equation}
+
+С другой стороны  
+
+\begin{equation}\label{9.31}
+\Delta\hat{f}(\omega_0) \sim a^{-1} e^{\frac{-\omega_0^2}{4a^2}}
+\end{equation}
+и если
+
+\begin{equation}\label{32}
+\varepsilon b^{-1} >> a^{-1} e^{\frac{-\omega_0^2}{4a^2}},
+\end{equation}
+
+то в $\omega$-области сигнал $\Delta f(t)$ "хорошо видим".
+
+Выше рассматривались функции $f(t)$, зависящие от одной переменной.
+Формулы \ref{9.4}, \ref{9.5} имеют многомерное обобщение.
+
+Если $f(x) = f(x_1...x_n)$, то
+\begin{equation}\label{33}
+\hat{f}(\omega) = \int e^{-i(\omega_1 x)}f(x)dx, \quad \omega = (\omega_1 ... \omega_n)
+\end{equation}
+
+Вэтой формуле $dx = dx_1...dx_n$
+\begin{equation}
+\begin{gathered}
+\int g(x)dx \equiv  \underbrace{\int_{-\infty}^{+\infty} ...  \int_{-\infty}^{+\infty}}_{n} g(x_1...x_n)dx_1...dx_n\\
+(\omega_1 x) = \sum_{i = 1}^{n} \omega_i x_i
+\end{gathered}
+\end{equation}
+
+Имеет место и аналог формулы обращения
+\begin{equation}\label{35}
+f(x) = \frac{1}{(2\pi)^n} \int e^{i(\omega_1 x)} \hat{f}(\omega) d\omega
+\end{equation}
+
+Двумерное преобразование Фурье используется при обработке изображений.
