@@ -1,22 +1,19 @@
 \section{Приближение функций полиномами}
-
 \label{lecture:2}
 
-В первой лекции было отмечено, что для описания зависимостей полезно иметь систему функций $\varphi _i(x)$ такую, что их значения легко вычисляются и любую непрерывную функцию $f: I \rightarrow \mathbb{R} $ заданную на интервале $ I = [a,b] $ можно с заданной точностью приблизить функциями вида 
+В первой лекции было отмечено, что для описания зависимостей полезно иметь систему функций $\varphi _i(x)$ такую, что их значения легко вычисляются, и любую непрерывную функцию $f: I \rightarrow \mathbb{R} $, заданную на интервале $ I = [a,b] $, можно с заданной точностью приблизить функциями вида 
 \begin{equation} \label{eq:2.1}
-\varPsi_n(x)=\sum_{i=0}^{n-1}{a_i\varphi_i(x)}, \quad i = 1, 2, 3, ...
+\varPsi_n(x)=\sum_{i=0}^{n-1}{a_i\varphi_i(x)}, \quad i = 1, 2, 3, \dots
 \end{equation}
 
 В качестве $\{\varphi_i(x)\}$ можно выбирать различные системы функций, но наиболее важен с практической точки зрения случай 
-
-
 \begin{equation}\label{eq:2.2}
-\varphi _i(x) = x^i, \quad i = 0, 1, 2, ...
+\varphi _i(x) = x^i, \quad i = 0, 1, 2, \dots
 \end{equation}
 
 Тогда
 \begin{equation}\label{eq:polynom}
-\varPsi _n(x) = p_n(x) = a_0 + a_1x + \dots + a_{n-1}x^{n-1} 
+\varPsi _n(x) = p_n(x) = a_0 + a_1x + \dots + a_{n-1}x^{n-1} .
 \end{equation}
 
 
@@ -24,9 +21,9 @@
 
 
 Определение точности приближения требует введения понятия нормы $\parallel f \parallel$ функции $f$. 
-Функции $f: I \rightarrow \mathbb{R} $ образуют линейное пространство $V[f]$, размерность которого бесконечна. Это означает, что существует функции $e_i(x), i = 1, 2, 3 ...$ такие, что любая функция $f \in V[f]$ может быть единственным образом представлена в виде бесконечного ряда 
+Функции $f: I \rightarrow \mathbb{R} $ образуют линейное пространство $V[f]$, размерность которого бесконечна. Это означает, что существует функции $e_i(x), i = 1, 2, 3 \dots$ такие, что любая функция $f \in V[f]$ может быть единственным образом представлена в виде бесконечного ряда 
 \begin{equation}
-f(x) = \sum_{i=0}^{\infty} {c_i e_i(x)}
+f(x) = \sum_{i=0}^{\infty} {c_i e_i(x)}.
 \end{equation}
 В этом случае говорят, что $\{e_i(x)\}$ -- \textbf{базис} в пространстве $V[f]$.
 
@@ -36,46 +33,44 @@ f(x) = \sum_{i=0}^{\infty} {c_i e_i(x)}
 \parallel \; \parallel \; : V \rightarrow \mathbb{R}^+
 \end{equation}
 такая что, если $X\in V$, то
-
 \begin{equation}
 \begin{array}{l}
-\parallel X \parallel \; \geq 0 \; \text{и}  \parallel X \parallel \; = 0 \Rightarrow X = 0 \\
-\parallel \alpha X \parallel \; = \alpha \parallel X \parallel  \\ 
-\parallel \alpha X + \beta Y\parallel \; \leq \; \parallel \alpha  X \parallel + \parallel \beta Y \parallel \text{(неравенство треугольника)}
+\parallel X \parallel \; \geq 0 \; \text{и}  \parallel X \parallel \; = 0 \Rightarrow X = 0 ,\\
+\parallel \alpha X \parallel \; = \alpha \parallel X \parallel ,  \\ 
+\parallel \alpha X + \beta Y\parallel \; \leq \; \parallel \alpha  X \parallel + \parallel \beta Y \parallel \text{(неравенство треугольника)}.
 \end{array}
 \end{equation}
 
-Если $V = \mathbb{R}^n$ (n-мерное вектроное пространство) и $X = (x_1 .. x_n)$, то обычная эвклидова норма $\parallel\;\parallel_2$ (длина вектора $X$) задается равенством
+Если $V = \mathbb{R}^n$ (n-мерное вектроное пространство) и $X=(x_1 \dots x_n)$, то обычная эвклидова норма $\parallel\;\parallel_2$ (длина вектора $X$) задается равенством
 \begin{equation}
 \parallel X\parallel_2 \; = \left[\sum_{i=1}^{n} x_i^2 \right]^{1/2}.
 \end{equation}
 
 Но в $\mathbb{R}^n$ существуют и другие нормы, например,
-
 \begin{align}
 \parallel X \parallel_1 \; &= \sum_{i = 1}^{n}|x_i| \\
-\parallel X \parallel_c \; &= \max_{i = 1...n}|x_i|
+\parallel X \parallel_c \; &= \max_{i = 1\dots n}|x_i|.
 \end{align}
 
-Эти формулы прямо приводят к определению нормы в пространстве функции $f: I \rightarrow \mathbb{R}$ и по определению
+Эти формулы прямо приводят к определению нормы в пространстве функции $f: I \rightarrow \mathbb{R}$, и по определению
 
-\begin{equation}
-\begin{gathered}
-\parallel f \parallel_2 \; = \left[ \int_{a}^{b} f^2(x)dx \right]^{1/2} \quad \text{($L^2$-норма)}\\
-\parallel f \parallel_1 \; = \int_{a}^{b} |f(x)|dx \quad \text{($L^1$-норма)} \\
-\parallel f \parallel_c \; = \max_{x \in I}|f(x)| \quad \text{(равномерная норма)}
-\end{gathered}
-\end{equation} 
 
-С точки зрения приближений наибольший интерес представляет равномерная норма $\parallel \; \parallel_c	$ и точность приближения функции $f$ полиномом $p_n$ задается числом 
+\begin{align}
+\parallel f \parallel_2 \; &= \left[ \int_{a}^{b} f^2(x)dx \right]^{1/2} \quad &\text{($L^2$-норма)}\\
+\parallel f \parallel_1 \; &= \int_{a}^{b} |f(x)|dx \quad &\text{($L^1$-норма)} \\
+\parallel f \parallel_c \; &= \max_{x \in I}|f(x)| \quad &\text{(равномерная норма)}.
+\end{align}
+
+
+С точки зрения приближений наибольший интерес представляет равномерная норма $\parallel \; \parallel_c	$, и точность приближения функции $f$ полиномом $p_n$ задается числом 
 \begin{equation}
-\parallel f - p_n \parallel_c \; = \max_{x\in [a, b]} |f(x)-p_n(x)|
+\parallel f - p_n \parallel_c \; = \max_{x\in [a, b]} |f(x)-p_n(x)|.
 \end{equation}
 
 
 Теорема Вейерштрасса утверждает, что любую непрерывную функцию $f: I \rightarrow \mathbb{R}$  с любой заданной точностью $\varepsilon$ можно приблизить полиномом $p_n(x), (n = n(\varepsilon))$. 
-Эта теорема говорит только о существовании такого полинома $p_n$, но ничего не говорит о том, как его построить и какова завиимость $n$ от $\varepsilon$. 
-Из теоремы Вейерштрасса следует, что $\{x^i\} \; (i = 0, 1, 2, ...)$ -- базис в пространстве $V[f]$ непрерывных функций $f$ на интервале $I$.
+Эта теорема говорит только о существовании такого полинома $p_n$, но ничего не говорит о том, как его построить и какова завиcимость $n$ от $\varepsilon$. 
+Из теоремы Вейерштрасса следует, что $\{x^i\} \; (i = 0, 1, 2, \dots )$ -- базис в пространстве $V[f]$ непрерывных функций $f$ на интервале $I$.
 
 Гораздо интереснее следующая постановка задачи: с какой точностью заданная функция $f$ может быть приближена полиномом заданной степени. 
 Оказывается, что среди полиномов степени $n - 1$ существует единственный \textbf{полином $p_n[f]$ наилучшeго приближения}. Если
@@ -87,7 +82,7 @@ f(x) = \sum_{i=0}^{\infty} {c_i e_i(x)}
 то для любого полинома $p$ степени $\leq n - 1$
 
 \begin{equation}
-\parallel f - p \parallel_c \; > \varepsilon_n[f],
+\parallel f - p \parallel_c \; > \varepsilon_n[f].
 \end{equation}
 
 Это тоже теорема существования, в которой ничего не говорится о том, как найти $p_n(f)$ и  $\varepsilon_n[f]$.
@@ -95,19 +90,19 @@ f(x) = \sum_{i=0}^{\infty} {c_i e_i(x)}
 Построение системы полиномов $p_n(f)$ для заданной функции $f$ -- очень трудная задача, точное решение которой при всех $n$ известно только для некоторых функций $f$. 
 Однако существует алгоритм посторения $p_n(f)$ для заданного n (например, алгоритм Ремеза).
 
-Важно то, что для величины $\varepsilon_n(f)$ существуют хорошие оценки сверху и для этого не надо точно знать функцию $f$ и достаточно предположиить, что $f \in W^k(M_k, I)$. Это означает, что функция $f$ на интервале $I$ имеет $k$ непрерывных производных и $|f^{(k)}(x)|\leq M_k$. 
+Важно то, что для величины $\varepsilon_n(f)$ существуют хорошие оценки сверху, и для этого не надо точно знать функцию $f$, и достаточно предположить, что $f \in W^k(M_k, I)$. Это означает, что функция $f$ на интервале $I$ имеет $k$ непрерывных производных и $|f^{(k)}(x)|\leq M_k$. 
 
 Таким образом,
-\begin{eqnarray}
+\begin{align}
 W^k[M_k, I] = \{f: I \rightarrow \quad, \text{ -- производные} \nonumber \\
-f^{(i)}(x) \text{ непрерывны при $i \leq k$ и } |f^{(k)}(x)| \leq M_k \}
-\end{eqnarray}
+f^{(i)}(x) \text{ непрерывны при $i \leq k$ и } |f^{(k)}(x)| \leq M_k \}.
+\end{align}
 
 
 \textbf{Класс функций $W^k[M_k, I]$} удобен для характеристики точности приближений, так как для любой функции $f \in W^k[M_k, I]$ имеет место достаточно точная оценка
 
 \begin{equation}
-\varepsilon_n[f] \leq \left(\frac{b-a}{2}\right)^k \frac{A_k M_k}{n^k},\; A_k = \left(\frac{\pi k}{2}\right) ^k \frac{1}{k!}
+\varepsilon_n[f] \leq \left(\frac{b-a}{2}\right)^k \frac{A_k M_k}{n^k},\; A_k = \left(\frac{\pi k}{2}\right) ^k \frac{1}{k!}.
 \end{equation}
 
 При $k \geq 2$ с помощью формулы Стирлинга получим, что 
@@ -119,15 +114,15 @@ f^{(i)}(x) \text{ непрерывны при $i \leq k$ и } |f^{(k)}(x)| \leq 
 Эта формула позволяет оценить, с какой точностью функция $f \in W^k[M_k, I]$ может быть приближена полиномами степени $\leq n-1$, но мы по-прежнему не имеем метода построения приближений.
 Такой метод дает \textbf{интерполяция}.
 
-Рассмотрим \textbf{разбиение} $X = (x_1, x_2,..., x_n)$ интервала $I = [a, b]$. Это означает просто, что заданы $n$ различных точек $x_i \in I, \; i = 1 ... n$ и $x_i \neq x_j$ и не предполагается, что $x_{i+1} > x_i$.
+Рассмотрим \textbf{разбиение} $X = (x_1, x_2, \dots , x_n)$ интервала $I = [a, b]$. Это означает просто, что заданы $n$ различных точек $x_i \in I, \; i = 1 \dots n$ и $x_i \neq x_j$ и предполагается, что $x_{i+1} > x_i$.
 
-\textbf{Интерполяционный полином} $\pi(f|x) \in \mathscr{P}_n $ зависит от $n$-параметров -- коэффициентов $a_0, a_1 .. a_{n-1}$ (см. \ref{eq:polynom}), которые определяются из условий
+\textbf{Интерполяционный полином} $\pi(f|x) \in \mathscr{P}_n $ зависит от $n$-параметров -- коэффициентов $a_0, a_1 \dots a_{n-1}$ (см. \ref{eq:polynom}), которые определяются из условий
 
 \begin{equation}\label{eq:interpolation}
-\pi(f|x)(x_j) = f(x_j) \quad j = 1 .. n
+\pi(f|x)(x_j) = f(x_j), \quad j = 1 \dots n.
 \end{equation}
 
-Это $n$ условий для определения $n$ коэффициентов  $a_0, a_1 .. a_{n-1}$ полинома
+Это $n$ условий для определения $n$ коэффициентов  $a_0, a_1 \dots a_{n-1}$ полинома
 
 \begin{equation}
 \pi(f|x)(x) = a_0 + a_1x + a_{n-1}x^{x-1}.
@@ -139,8 +134,8 @@ f^{(i)}(x) \text{ непрерывны при $i \leq k$ и } |f^{(k)}(x)| \leq 
 \begin{equation}
 e^i(x_i)= \delta_{ij} =
 \begin{cases}
-1, i = j \\
-0, i \neq j
+1, i = j, \\
+0, i \neq j.
 
 \end{cases}
 \end{equation}
@@ -159,7 +154,7 @@ e^i(x_i)= \delta_{ij} =
 Легко догадаться, какой вид имеет полином $e^i(x)$. Он задается равенством 
 
 \begin{equation} \label{eq:2.21}
-\varepsilon^i(x) = \frac{(x-x_1)(x-x_2)..(x-x_{i-1})(x-x_{i+1}) ...(x-x_n)}{(x_i-x_1)(x_i-x_2)..(x_i-x_{i-1})(x_i-x_{i+1})..(x_i - x_n )}
+\varepsilon^i(x) = \frac{(x-x_1)(x-x_2)..(x-x_{i-1})(x-x_{i+1}) \dots(x-x_n)}{(x_i-x_1)(x_i-x_2)..(x_i-x_{i-1})(x_i-x_{i+1})\dots(x_i - x_n )}.
 \end{equation}
 
 Мы построили \textbf{интерполяционный полином в форме Лагранжа}. 
@@ -167,22 +162,22 @@ e^i(x_i)= \delta_{ij} =
 Рассмотрим точность интерполяции. Она задается формулой 
 
 \begin{equation}
-\parallel f - \pi_n| e(x) \parallel_c \; \leq (1+ \lambda_n(f, x))\varepsilon_n(f)
+\parallel f - \pi_n| e(x) \parallel_c \; \leq (1+ \lambda_n(f, x))\varepsilon_n(f),
 \end{equation}
 
 и во всяком случае 
 
 \begin{equation}
-\lambda_n(f, x) \geq \frac{e_n n}{8 \sqrt{\pi}} \quad (n \geq 2)
+\lambda_n(f, x) \geq \frac{e_n n}{8 \sqrt{\pi}} \quad (n \geq 2).
 \end{equation}
 
-Величина $\lambda_n(f, x)$ показывает насколько интерполяционный полином проигрывает полиному наилучшего приближения $p_n(f)$ (\ref{eq:best_polynom}) .
+Величина $\lambda_n(f, x)$ показывает насколько интерполяционный полином проигрывает полиному наилучшего приближения $p_n(f)$ (\ref{eq:best_polynom}).
 
 
 Эти величины сильно зависят от выбора разбиения $X$, и в случае \textbf{равномерного разбиения}, для которого
 
 \begin{equation} \label{eq:2.24}
-x_i = a + \frac{b-a}{n-1}(i-1) \quad i = 1...n
+x_i = a + \frac{b-a}{n-1}(i-1) \quad i = 1\dots n
 \end{equation}
 
 величина $\lambda_n(f, x)$ быстро растет с ростом $n$ и
@@ -207,14 +202,14 @@ f(x) = \frac{1}{1+25x^2}
 Нужное разбиение задается формулой 
 
 \begin{equation}\label{eq:27}
-x_m = \frac{b+a}{2} + \frac{b-a}{2} \cos \frac{\pi(2m-1)}{2n}, \quad m = 1...n
+x_m = \frac{b+a}{2} + \frac{b-a}{2} \cos \frac{\pi(2m-1)}{2n}, \quad m = 1\dots n.
 \end{equation}
 
-И если $X = \{x_m\}$ и $f \in W^k[M_k, I]$ то 
+И, если $X = \{x_m\}$ и $f \in W^k[M_k, I]$, то 
 
 \begin{equation}
 \parallel \pi_n (f(x) -f) \parallel_c \; \leq \left(
-9+ \frac{4}{\pi}\mathrm{ln} (n)\right) \left( \frac{b-a}{2}\right)^k \frac{M_kA_k}{n^k}
+9+ \frac{4}{\pi}\mathrm{ln} (n)\right) \left( \frac{b-a}{2}\right)^k \frac{M_kA_k}{n^k}.
 \end{equation}
 
 Разбиение \ref{eq:27} называется Чебышевским, так как $\cos \frac{\pi(2m-1)}{2n}$  -- это нули полинома Чебышева $T_n(y) = \cos(n \; arccos(y))$.
