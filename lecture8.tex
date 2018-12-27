@@ -175,35 +175,39 @@
 
 Для формулировки алгоритма градиентного спуска надо ввести понятие \textbf{градиента функции $Q(x)$}, где $x = (x_1 \dots x_n)$. Это вектор $\nabla Q(x)$
 \begin{equation} \label{eq:8.1}
-	\nabla Q(x) = (\frac{\partial Q}{x_i}(x) \dots \frac{\partial Q}{x_i}(x))
+	\nabla Q(x) = (\frac{\partial Q}{x_i}(x) \dots \frac{\partial Q}{x_i}(x)).
 \end{equation}
+
 Поясним геометрический смысл вектора $\nabla Q(x)$. Единичный вектор \parbox{39mm}{$\xi = (\xi_1 \dots \xi_n), \|\xi\| = 1$} задает некоторое направление в $\mathbb{R}^n$. Введем величину $\nabla_\xi Q$ - производную $Q(x)$ по направлению $\xi$
 \begin{equation} \label{eq:8.2}
-	\nabla_\xi Q(x) = \lim_{\varepsilon \to 0} \frac{Q(x+\varepsilon\xi) - Q(x)}{\varepsilon}
+	\nabla_\xi Q(x) = \lim_{\varepsilon \to 0} \frac{Q(x+\varepsilon\xi) - Q(x)}{\varepsilon}.
 \end{equation}
+
 Так как
 \begin{equation} \label{eq:8.3}
 	Q(x+\varepsilon\xi) = Q(x) + \varepsilon\sum^n_{i=1}{\xi_i \frac{\partial Q}{\partial x_i}(x) + \mathcal{O}(\varepsilon^2)} = Q(x) + \varepsilon(\nabla Q(x), \xi) + \mathcal{O}(\varepsilon^2),
 \end{equation}
 то отсюда следует, что
 \begin{equation} \label{eq:8.4}
-	\nabla_\xi Q(x) = (\nabla Q(x), \xi) 
+	\nabla_\xi Q(x) = (\nabla Q(x), \xi).
 \end{equation}
+
 Вектор $\nabla Q$ задает направление $\xi_0$
 \begin{equation} \label{eq:8.5}
 	\nabla Q = \|\nabla Q(x)\|\xi_0 
 \end{equation}
 и следовательно
 \begin{equation} \label{eq:8.6}
-	\nabla_\xi Q(x) = \|\nabla Q(x)\|(\xi, \xi_0) 
+	\nabla_\xi Q(x) = \|\nabla Q(x)\|(\xi, \xi_0).
 \end{equation}
+
 Таким образом, $\xi_0$ -- это направление, вдоль которого величина $Q(x)$ меняется наиболее быстро, и вектор $\nabla Q(x)$ направлен по нормали к поверхности уровня $Q(x) = C$.
 
 Алгоритм градиентного спуска действует следующим образом. Пусть задано нулевое приближение $x^{(0)} \in \mathbb{R}^n$. Определим функцию $\varphi_0(t) (t \in \mathbb{R}^1)$ равенством
 \begin{equation} \label{eq:8.7}
 	\varphi_0(t) = Q(x^{(0)} - t\nabla Q(x^{(0)})) 
 \end{equation}
-и найдем $t_0$ из условия $\varphi_0(t) = min$. Тогда
+и найдем $t_0$ из условия $\varphi_0(t) = \min$. Тогда
 \begin{align}
 	\begin{split} \label{eq:8.8}
 		x^{(1)} &= x^{(0)} - t_0\nabla Q(x^{(0)}) \\
@@ -212,7 +216,7 @@
 \end{align}
 где $t_1$ точки минимума функции
 \begin{equation} \label{eq:8.9}
-	\varphi_1(t) = Q(x^{(1)} - t\nabla Q(x^{(1)})) \textrm{ и так далее}
+	\varphi_1(t) = Q(x^{(1)} - t\nabla Q(x^{(1)})) \textrm{ и так далее}.
 \end{equation}
 
 Схема действия алгоритма градиентного спуска в двумерном случае \parbox{29mm}{$(x_1 = x, x_2 = y)$} показана на рисунке \ref{fig:2d_gradient}.
