@@ -1,4 +1,6 @@
 \section{Интерполяционный полином в форме Ньютона \\ Численное дифференцирование и интегрирование}
+\label{lecture:3}
+
 На прошлой лекции был определен интерполяционный полином в форме Лагранжа (\ref{eq:2.19}, \ref{eq:2.21}). Этот же полином (он единственный) удобнее записывать в форме Ньютона:
 \begin{dmath}\label{eq:3.1}
 	\pi(f(x), x) = f(x_1) + f(x_1, x_2)(x-x_1) + f(x_1, x_2, x_3)(x-x_1)(x-x_2) + \dots + f(x_1, x_2, \dots, x_n)(x-x_1)\dots(x-x_{n-1})
@@ -33,7 +35,7 @@
 	|f(x) - \pi_k(f|X)(x)| = \frac{f^{n}(\xi)}{n!} \omega_n (x,X)
 \end{equation}
 В этой формуле:
-\begin{equation}
+\begin{equation} \label{eq:3.5}
 \begin{aligned}
 	&\xi \in [y_1, y_2]; \quad y_1=min_{i}(x-x_i); \quad y_2=max_{i}(x-x_i) ;\\ 
 	&\omega_n(x, X) = (x-x_1)\dots(x-x_n)
