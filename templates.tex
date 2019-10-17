@@ -1,48 +1,160 @@
+%
+%\begin{figure}[h] % picture
+%	\centering
+%	\includegraphics[width = 0.1\textwidth]{}
+%	\caption{caption}
+%	\label{fig:plasmid}	
+%\end{figure}
+%
+%
+%
+%\begin{figure*}[h] % two pictures
+%	\centering
+%	\begin{subfigure}[t]{0.1\linewidth}
+%		\includegraphics[width = \textwidth]{}
+%		\caption{caption 1}\label{fig:alpha}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.1\linewidth}
+%		\includegraphics[width = \textwidth]{}
+%		\caption{caption 2}\label{fig:beta}
+%
+%	\end{subfigure}
+%	\caption{great caption}
+%	\label{fig:structs}
+%	
+%\end{figure*}
+%
+%
+%
+%\begin{table}[p]
+%	\small
+%	\caption{caption}
+%	\label{table:strains}
+%	\begin{tabular}{ p p p }
+%
+%		Название штамма & Описание & Источник \\ 
+%
+%		W303 & MAT\textbf{a} ade2-101 his3-11 trp1-1 ura3-52 can1-100 leu2-3,112, GAL, psi+ & $^1$ \\  
+%
+%
+%		
+%		блабла & блабал & jdsjf \\
+%
+%	\end{tabular}
+%	
+%\end{table}
+%
+%
 
-\begin{figure}[h] % picture
+\begin{figure*}[h] % picture
+\begin{subfigure}[t]{0.4\linewidth}
 	\centering
-	\includegraphics[width = 0.1\textwidth]{pics/alpha_struct.png}
-	\caption{caption}
-	\label{fig:plasmid}	
-\end{figure}
-
-
-
-\begin{figure*}[h] % two pictures
-	\centering
-	\begin{subfigure}[t]{0.1\linewidth}
-		\includegraphics[width = \textwidth]{pics/alpha_struct.png}
-		\caption{caption 1}\label{fig:alpha}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.1\linewidth}
-		\includegraphics[width = \textwidth]{pics/beta_struct.png}
-		\caption{caption 2}\label{fig:beta}
-
-	\end{subfigure}
-	\caption{great caption}
-	\label{fig:structs}
+	\begin{tikzpicture}
 	
-\end{figure*}
+	\begin{axis}[
+	width = \linewidth,
+	xmin=0,   xmax=8,
+	ymin=-1,   ymax=5,
+	axis y line*=left,
+	axis x line*=bottom,
+	axis lines = left,
+	domain=0:30,
+	grid = major,
+	tick label style = {white},
+	ylabel = {$y$}, ylabel style={rotate=-90},
+	xlabel = {$x$},
+	every axis x label/.style={
+		at={(ticklabel* cs:1.0)},
+		anchor=west,
+	},
+	every axis y label/.style={
+		at={(ticklabel* cs:1.0)},
+		anchor=south,
+	}
+	]
+	
+	\coordinate (A) at (0, 4);
+	\coordinate (B) at (5, 4);
+	\coordinate (C) at (5, 0);
+	\coordinate (D) at (8, 0);
+	\draw (A) -- (B) -- (C) -- (D);
+	
+	
+	\end{axis}
 
-
-
-\begin{table}[p]
-	\small
-	\caption{caption}
-	\label{table:strains}
-	\begin{tabular}{ p{0.25\width - \tabcolsep} p{0.65\width - 2\tabcolsep}  p{0.1\width - \tabcolsep}}
-		\graytable
-		\toprule
-		Название штамма & Описание & Источник \\ 
-		\midrule
-		W303 & MAT\textbf{a} ade2-101 his3-11 trp1-1 ura3-52 can1-100 leu2-3,112, GAL, psi+ & $^1$ \\  \invisiblerule
-		\midrule
-
+	\end{tikzpicture}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.2\linewidth}
+	\begin{tikzpicture}[scale=2]
+		\begin{axis}[
+		width = \linewidth,
+		xmin=0, xmax=1,
+		ymin=0, ymax=2,
+		unit vector ratio=1 1,
+		axis line style={draw=none},
+		tick style={draw=none},
+		tick label style={color=white}
+		]
 		
-		блабла & блабал & jdsjf \\
-		\bottomrule
-	\end{tabular}
+		\draw [->] (0, 1) -- (1, 1);	
+		\node[scale=0.3] (A) at (0.5, 1.5) {сглаживание};
+		\end{axis}
+
+	\end{tikzpicture}
+		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\linewidth}
 	
-\end{table}
+	\centering
+	\begin{tikzpicture}
+	
+	\begin{axis}[
+	width = \linewidth,
+	xmin=0,   xmax=8,
+	ymin=-1,   ymax=5,
+	axis y line*=left,
+	axis x line*=bottom,
+	axis lines = left,
+	domain=0:30,
+	grid = major,
+	tick label style = {white},
+	ylabel = {$y$}, ylabel style={rotate=-90},
+	xlabel = {$x$},
+	every axis x label/.style={
+		at={(ticklabel* cs:1.0)},
+		anchor=west,
+	},
+	every axis y label/.style={
+		at={(ticklabel* cs:1.0)},
+		anchor=south,
+	}
+	]
+	
+	\coordinate (A) at (0, 4);
+	\coordinate (A1) at (3, 4);
+	\coordinate (A2) at (3.4, 3.9);
+	\coordinate (A3) at (3.6, 4.1);
+	
+	\coordinate (B1) at (4, 3.5);
+	\coordinate (B2) at (5, 4.3);
+	\coordinate (B3) at (5.3, 4.7);
+	
+	
+	\coordinate (C1) at (5.5, -0.5);
+	\coordinate (C2) at (6, 0);
+	\coordinate (C3) at (6.3, 0.3 );
+	\coordinate (C4) at (6.5, -0.1);
+	
+	\coordinate (D1) at (7, 0);
+	\coordinate (D2) at (8,0);
+	
+	\draw plot [smooth] coordinates {(A) (A1) (A2) (A3) (B1)  (B2)  (C1) (C2) (C3) (C4) (D1) (D2) } ;
+	\end{axis}
 
+	\end{tikzpicture}
+	\end{subfigure}
 
+	
+	\caption{}
+	\label{fig:}
+\end{figure*}
